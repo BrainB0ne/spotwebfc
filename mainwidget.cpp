@@ -1,15 +1,16 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 
+#include <QFileDialog>
+
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWidget)
 {
     ui->setupUi(this);
 
-    QList<int> sizeList;
-    sizeList << 1 << 1;
-    ui->splitter->setSizes(sizeList);
+    connectSignalsSlots();
+    initialize();
 }
 
 MainWidget::~MainWidget()
@@ -17,32 +18,55 @@ MainWidget::~MainWidget()
     delete ui;
 }
 
-void MainWidget::on_loadButton_clicked()
+void MainWidget::connectSignalsSlots()
+{
+    connect(ui->openButton,         SIGNAL(clicked()), this, SLOT(slotOpenButtonClicked()));
+    connect(ui->saveButton,         SIGNAL(clicked()), this, SLOT(slotSaveButtonClicked()));
+    connect(ui->saveAsButton,       SIGNAL(clicked()), this, SLOT(slotSaveAsButtonClicked()));
+    connect(ui->addToolButton,      SIGNAL(clicked()), this, SLOT(slotAddToolButtonClicked()));
+    connect(ui->removeToolButton,   SIGNAL(clicked()), this, SLOT(slotRemoveToolButtonClicked()));
+    connect(ui->clearAllToolButton, SIGNAL(clicked()), this, SLOT(slotClearAllToolButtonClicked()));
+}
+
+void MainWidget::initialize()
+{
+    QList<int> sizeList;
+    sizeList << 1 << 1;
+    ui->splitter->setSizes(sizeList);
+}
+
+void MainWidget::slotOpenButtonClicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Spotweb Filter File"),
+                                                    qApp->applicationDirPath(),
+                                                    tr("Spotweb Filter Files (*.xml)"));
+    if(!fileName.isEmpty())
+    {
+        ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+    }
+}
+
+void MainWidget::slotSaveButtonClicked()
 {
 
 }
 
-void MainWidget::on_saveButton_clicked()
+void MainWidget::slotSaveAsButtonClicked()
 {
 
 }
 
-void MainWidget::on_saveAsButton_clicked()
+void MainWidget::slotAddToolButtonClicked()
 {
 
 }
 
-void MainWidget::on_addToolButton_clicked()
+void MainWidget::slotRemoveToolButtonClicked()
 {
 
 }
 
-void MainWidget::on_removeToolButton_clicked()
-{
-
-}
-
-void MainWidget::on_clearAllToolButton_clicked()
+void MainWidget::slotClearAllToolButtonClicked()
 {
 
 }

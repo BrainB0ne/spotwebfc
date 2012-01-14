@@ -15,18 +15,16 @@ public:
     explicit MainWidget(QWidget *parent = 0);
     ~MainWidget();
     
+    void initialize();
+    void connectSignalsSlots();
+
 private slots:
-    void on_loadButton_clicked();
-
-    void on_saveButton_clicked();
-
-    void on_saveAsButton_clicked();
-
-    void on_addToolButton_clicked();
-
-    void on_removeToolButton_clicked();
-
-    void on_clearAllToolButton_clicked();
+    void slotOpenButtonClicked();
+    void slotSaveButtonClicked();
+    void slotSaveAsButtonClicked();
+    void slotAddToolButtonClicked();
+    void slotRemoveToolButtonClicked();
+    void slotClearAllToolButtonClicked();
 
 private:
     Ui::MainWidget *ui;
