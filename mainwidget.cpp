@@ -6,6 +6,10 @@ MainWidget::MainWidget(QWidget *parent) :
     ui(new Ui::MainWidget)
 {
     ui->setupUi(this);
+
+    QList<int> sizeList;
+    sizeList << 1 << 1;
+    ui->splitter->setSizes(sizeList);
 }
 
 MainWidget::~MainWidget()
