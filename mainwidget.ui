@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWidget</class>
+ <widget class="QWidget" name="MainWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>629</width>
+    <height>498</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Spotweb Filter Creator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="spotwebfc.qrc">
+    <normaloff>:/images/filter.png</normaloff>:/images/filter.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="loadButton">
+     <property name="text">
+      <string>&amp;Load...</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="saveButton">
+     <property name="text">
+      <string>&amp;Save</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="saveAsButton">
+     <property name="text">
+      <string>&amp;Save As...</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLineEdit" name="fileLineEdit"/>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="yourFiltersLabel">
+         <property name="text">
+          <string>Your Filters</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QTreeWidget" name="yourFiltersTreeWidget">
+         <column>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>ID</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QToolButton" name="addToolButton">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="spotwebfc.qrc">
+           <normaloff>:/images/add.png</normaloff>:/images/add.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QToolButton" name="removeToolButton">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="spotwebfc.qrc">
+           <normaloff>:/images/remove.png</normaloff>:/images/remove.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>298</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="availableFiltersLabel">
+         <property name="text">
+          <string>Available Filters</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QTreeWidget" name="availableFiltersTreeWidget">
+         <column>
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QToolButton" name="clearAllToolButton">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="spotwebfc.qrc">
+           <normaloff>:/images/clear.png</normaloff>:/images/clear.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>218</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="spotwebfc.qrc"/>
+ </resources>
+ <connections/>
+</ui>
