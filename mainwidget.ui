@@ -19,9 +19,12 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
-    <widget class="QPushButton" name="loadButton">
+    <widget class="QPushButton" name="openButton">
+     <property name="toolTip">
+      <string>Open an existing Spotweb Filter file</string>
+     </property>
      <property name="text">
-      <string>&amp;Load...</string>
+      <string>&amp;Open...</string>
      </property>
      <property name="icon">
       <iconset resource="spotwebfc.qrc">
@@ -31,6 +34,9 @@
    </item>
    <item row="0" column="1">
     <widget class="QPushButton" name="saveButton">
+     <property name="toolTip">
+      <string>Save the Spotweb filters</string>
+     </property>
      <property name="text">
       <string>&amp;Save</string>
      </property>
@@ -42,6 +48,9 @@
    </item>
    <item row="0" column="2">
     <widget class="QPushButton" name="saveAsButton">
+     <property name="toolTip">
+      <string>Save the Spotweb filters to another file</string>
+     </property>
      <property name="text">
       <string>&amp;Save As...</string>
      </property>
@@ -53,6 +62,9 @@
    </item>
    <item row="0" column="3">
     <widget class="QLineEdit" name="fileLineEdit">
+     <property name="toolTip">
+      <string>Current Spotweb Filter file</string>
+     </property>
      <property name="readOnly">
       <bool>true</bool>
      </property>
@@ -74,6 +86,15 @@
        </item>
        <item row="1" column="0" colspan="3">
         <widget class="QTreeWidget" name="yourFiltersTreeWidget">
+         <property name="toolTip">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;List of your filters&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;- Add a new filter by clicking the (+) button&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;- Remove a filter by selecting a filter and clicking the (-) button&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <column>
           <property name="text">
            <string>Name</string>
@@ -88,6 +109,9 @@
        </item>
        <item row="2" column="0">
         <widget class="QToolButton" name="addToolButton">
+         <property name="toolTip">
+          <string>Add a new filter</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -99,6 +123,9 @@
        </item>
        <item row="2" column="1">
         <widget class="QToolButton" name="removeToolButton">
+         <property name="toolTip">
+          <string>Remove the selected filter</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -134,6 +161,9 @@
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="QTreeWidget" name="availableFiltersTreeWidget">
+         <property name="toolTip">
+          <string>Available filters to choose from in Spotweb</string>
+         </property>
          <column>
           <property name="text">
            <string>Type</string>
@@ -143,6 +173,9 @@
        </item>
        <item row="2" column="0">
         <widget class="QToolButton" name="clearAllToolButton">
+         <property name="toolTip">
+          <string>Uncheck all filters (Clear)</string>
+         </property>
          <property name="text">
           <string/>
          </property>
