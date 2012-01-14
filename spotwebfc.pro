@@ -23,7 +23,10 @@ OTHER_FILES += \
     images/clear.png \
     images/add.png \
     images/spotwebfc.ico \
-    spotwebfc.rc
+    spotwebfc.rc \
+    images/filesaveas.png \
+    images/filesave.png \
+    images/fileload.png
 
 RC_FILE = spotwebfc.rc
 
