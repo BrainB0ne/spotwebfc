@@ -73,6 +73,7 @@ void MainWidget::loadContents()
     QTreeWidgetItem *catItem = 0;
     QTreeWidgetItem *typeItem = 0;
     QTreeWidgetItem *subcatItem = 0;
+    QTreeWidgetItem *subfilterItem = 0;
 
     QDomNode nCat = docElem.firstChild();
     while(!nCat.isNull())
@@ -106,8 +107,23 @@ void MainWidget::loadContents()
                         {
                             subcatItem = new QTreeWidgetItem(typeItem);
                             subcatItem->setText(0, eSubCat.attribute("name"));
-                            subcatItem->setText(1, eSubCat.attribute("filter"));
                             subcatItem->setExpanded(true);
+
+                            QDomNode nSubFilter = eSubCat.firstChild();
+                            while (!nSubFilter.isNull())
+                            {
+                                QDomElement eSubFilter = nSubFilter.toElement();
+                                if(!eSubFilter.isNull())
+                                {
+                                    subfilterItem = new QTreeWidgetItem(subcatItem);
+                                    subfilterItem->setCheckState(0, Qt::Unchecked);
+                                    subfilterItem->setText(0, eSubFilter.attribute("name"));
+                                    subfilterItem->setText(1, eSubFilter.attribute("filter"));
+                                    subfilterItem->setExpanded(true);
+                                }
+
+                                nSubFilter = nSubFilter.nextSibling();
+                            }
                         }
 
                         nSubCat = nSubCat.nextSibling();
@@ -120,6 +136,9 @@ void MainWidget::loadContents()
 
         nCat = nCat.nextSibling();
     }
+
+    ui->contentsTreeWidget->resizeColumnToContents(0);
+    ui->contentsTreeWidget->resizeColumnToContents(1);
 }
 
 void MainWidget::slotOpenButtonClicked()
