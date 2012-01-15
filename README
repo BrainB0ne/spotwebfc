@@ -2,7 +2,7 @@
 
 ATTENTION: project is still in development and is NOT fully functional (yet) :-)
 
-This project is GUI application for creating Spotweb Filter files (.xml)
+This project is a GUI application for creating Spotweb Filter files (.xml)
 This project is developed with Qt 4.8.0
 
 The spotwebfc.xml file must be placed in the same directory as the executable when running the application.
