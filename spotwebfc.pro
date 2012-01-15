@@ -40,11 +40,14 @@ RC_FILE = spotwebfc.rc
 }
 
 SOURCES += main.cpp\
-        mainwidget.cpp
+        mainwidget.cpp \
+    aboutdialog.cpp
 
-HEADERS  += mainwidget.h
+HEADERS  += mainwidget.h \
+    aboutdialog.h
 
-FORMS    += mainwidget.ui
+FORMS    += mainwidget.ui \
+    aboutdialog.ui
 
 OTHER_FILES += \
     images/remove.png \
@@ -56,7 +59,8 @@ OTHER_FILES += \
     images/filesaveas.png \
     images/filesave.png \
     images/fileload.png \
-    spotwebfc.xml
+    spotwebfc.xml \
+    images/about.png
 
 RESOURCES += \
     spotwebfc.qrc

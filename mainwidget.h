@@ -23,6 +23,7 @@ private slots:
     void slotOpenButtonClicked();
     void slotSaveButtonClicked();
     void slotSaveAsButtonClicked();
+    void slotAboutButtonClicked();
     void slotAddToolButtonClicked();
     void slotRemoveToolButtonClicked();
     void slotClearAllToolButtonClicked();

@@ -7,5 +7,6 @@
         <file>images/fileload.png</file>
         <file>images/filesave.png</file>
         <file>images/filesaveas.png</file>
+        <file>images/about.png</file>
     </qresource>
 </RCC>

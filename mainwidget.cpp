@@ -1,6 +1,8 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 
+#include "aboutdialog.h"
+
 #include <QtGui/QFileDialog>
 #include <QtGui/QMessageBox>
 #include <QtXml/QDomDocument>
@@ -27,6 +29,7 @@ void MainWidget::connectSignalsSlots()
     connect(ui->openButton,         SIGNAL(clicked()), this, SLOT(slotOpenButtonClicked()));
     connect(ui->saveButton,         SIGNAL(clicked()), this, SLOT(slotSaveButtonClicked()));
     connect(ui->saveAsButton,       SIGNAL(clicked()), this, SLOT(slotSaveAsButtonClicked()));
+    connect(ui->aboutButton,        SIGNAL(clicked()), this, SLOT(slotAboutButtonClicked()));
     connect(ui->addToolButton,      SIGNAL(clicked()), this, SLOT(slotAddToolButtonClicked()));
     connect(ui->removeToolButton,   SIGNAL(clicked()), this, SLOT(slotRemoveToolButtonClicked()));
     connect(ui->clearAllToolButton, SIGNAL(clicked()), this, SLOT(slotClearAllToolButtonClicked()));
@@ -38,7 +41,7 @@ void MainWidget::initialize()
     sizeList << 1 << 1;
     ui->splitter->setSizes(sizeList);
 
-    ui->yourFiltersTreeWidget->setRootIsDecorated(false);
+    ui->filtersTreeWidget->setRootIsDecorated(false);
 
     loadAvailableFilters();
 }
@@ -52,14 +55,14 @@ void MainWidget::loadAvailableFilters()
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly))
     {
-        QMessageBox::critical(this, "Error", QString("Filter data file: %1 could not be opened").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
+        QMessageBox::critical(this, "Error", QString("Contents file: %1 could not be opened").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
         return;
     }
 
     if (!doc.setContent(&file))
     {
         file.close();
-        QMessageBox::critical(this, "Internal Error", QString("Filter data could not be read correctly").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
+        QMessageBox::critical(this, "Internal Error", QString("Contents data could not be read correctly").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
         return;
     }
 
@@ -74,7 +77,7 @@ void MainWidget::loadAvailableFilters()
         QDomElement e = n.toElement();
         if(!e.isNull())
         {
-            item = new QTreeWidgetItem(ui->availableFiltersTreeWidget);
+            item = new QTreeWidgetItem(ui->contentsTreeWidget);
             item->setCheckState(0, Qt::Unchecked);
             item->setText(0, e.attribute("name"));
         }
@@ -104,11 +107,22 @@ void MainWidget::slotSaveAsButtonClicked()
 
 }
 
+void MainWidget::slotAboutButtonClicked()
+{
+    AboutDialog* pAboutDlg = new AboutDialog(this);
+    if(pAboutDlg)
+    {
+        pAboutDlg->exec();
+
+        delete pAboutDlg;
+        pAboutDlg = 0;
+    }
+}
+
 void MainWidget::slotAddToolButtonClicked()
 {
-    QTreeWidgetItem* item = new QTreeWidgetItem(ui->yourFiltersTreeWidget);
+    QTreeWidgetItem* item = new QTreeWidgetItem(ui->filtersTreeWidget);
     item->setText(0, "Name");
-    item->setText(1, "1");
 }
 
 void MainWidget::slotRemoveToolButtonClicked()
