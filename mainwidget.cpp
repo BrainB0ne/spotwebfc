@@ -1,7 +1,11 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 
-#include <QFileDialog>
+#include <QtGui/QFileDialog>
+#include <QtGui/QMessageBox>
+#include <QtXml/QDomDocument>
+
+#define SPOTWEB_AVAILABLE_FILTER_FILE "spotwebfc.xml"
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
@@ -33,6 +37,50 @@ void MainWidget::initialize()
     QList<int> sizeList;
     sizeList << 1 << 1;
     ui->splitter->setSizes(sizeList);
+
+    ui->yourFiltersTreeWidget->setRootIsDecorated(false);
+
+    loadAvailableFilters();
+}
+
+void MainWidget::loadAvailableFilters()
+{
+    QDomDocument doc("spotwebfc");
+
+    QString filePath = qApp->applicationDirPath() + "/" + QString(SPOTWEB_AVAILABLE_FILTER_FILE);
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        QMessageBox::critical(this, "Error", QString("Filter data file: %1 could not be opened").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
+        return;
+    }
+
+    if (!doc.setContent(&file))
+    {
+        file.close();
+        QMessageBox::critical(this, "Internal Error", QString("Filter data could not be read correctly").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
+        return;
+    }
+
+    file.close();
+
+    QDomElement docElem = doc.documentElement();
+
+    QTreeWidgetItem *item = 0;
+    QDomNode n = docElem.firstChild();
+    while(!n.isNull())
+    {
+        QDomElement e = n.toElement();
+        if(!e.isNull())
+        {
+            item = new QTreeWidgetItem(ui->availableFiltersTreeWidget);
+            item->setCheckState(0, Qt::Unchecked);
+            item->setText(0, e.attribute("name"));
+        }
+
+        n = n.nextSibling();
+    }
 }
 
 void MainWidget::slotOpenButtonClicked()
@@ -58,7 +106,9 @@ void MainWidget::slotSaveAsButtonClicked()
 
 void MainWidget::slotAddToolButtonClicked()
 {
-
+    QTreeWidgetItem* item = new QTreeWidgetItem(ui->yourFiltersTreeWidget);
+    item->setText(0, "Name");
+    item->setText(1, "1");
 }
 
 void MainWidget::slotRemoveToolButtonClicked()

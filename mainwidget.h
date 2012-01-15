@@ -17,6 +17,7 @@ public:
     
     void initialize();
     void connectSignalsSlots();
+    void loadAvailableFilters();
 
 private slots:
     void slotOpenButtonClicked();
