@@ -161,23 +161,52 @@ void MainWidget::slotOpenButtonClicked()
 
 void MainWidget::slotSaveButtonClicked()
 {
+    if(ui->fileLineEdit->text().isEmpty())
+    {
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save Spotweb Filter File"),
+                                   qApp->applicationDirPath() + "/myfilters.xml",
+                                   tr("Spotweb Filter Files (*.xml)"));
 
+        if(!fileName.isEmpty())
+        {
+            ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+            //TODO: save filters to file from File Save Dialog
+
+            QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(QDir::convertSeparators(fileName)));
+        }
+    }
+    else
+    {
+        //TODO: save filters to file specified in fileLineEdit
+
+        QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
+    }
 }
 
 void MainWidget::slotSaveAsButtonClicked()
 {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Spotweb Filter File As"),
+                               qApp->applicationDirPath() + "/myfilters.xml",
+                               tr("Spotweb Filter Files (*.xml)"));
 
+    if(!fileName.isEmpty())
+    {
+        ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+        //TODO: save filters to file from File Save Dialog
+
+        QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(QDir::convertSeparators(fileName)));
+    }
 }
 
 void MainWidget::slotAboutButtonClicked()
 {
-    AboutDialog* pAboutDlg = new AboutDialog(this);
-    if(pAboutDlg)
+    AboutDialog* aboutDlg = new AboutDialog(this);
+    if(aboutDlg)
     {
-        pAboutDlg->exec();
+        aboutDlg->exec();
 
-        delete pAboutDlg;
-        pAboutDlg = 0;
+        delete aboutDlg;
+        aboutDlg = 0;
     }
 }
 
@@ -189,12 +218,20 @@ void MainWidget::slotAddToolButtonClicked()
 
 void MainWidget::slotRemoveToolButtonClicked()
 {
+    QList<QTreeWidgetItem*> selItems = ui->filtersTreeWidget->selectedItems();
+    QList<QTreeWidgetItem*>::iterator it = selItems.begin(),
+                                      itEnd = selItems.end();
 
+    while(it != itEnd)
+    {
+        delete (*it);
+        ++it;
+    }
 }
 
 void MainWidget::slotClearAllToolButtonClicked()
 {
-    QTreeWidgetItemIterator it(ui->contentsTreeWidget);
+    QTreeWidgetItemIterator it(ui->contentsTreeWidget, QTreeWidgetItemIterator::All);
     while (*it)
     {
         (*it)->setCheckState(0, Qt::Unchecked);
