@@ -60,7 +60,11 @@ OTHER_FILES += \
     images/filesave.png \
     images/fileload.png \
     spotwebfc.xml \
-    images/about.png
+    images/about.png \
+    images/picture.png \
+    images/music.png \
+    images/controller.png \
+    images/application.png
 
 RESOURCES += \
     spotwebfc.qrc

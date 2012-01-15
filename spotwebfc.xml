@@ -1,5 +1,5 @@
 <spotwebfc>
-    <cat name="Image" filter="cat0">
+    <cat name="Image" filter="cat0" pixmap="picture">
         <type name="Movie" filter="cat0_z0">
             <subcat name="Format">
                 <subfilter name="DivX" filter="cat0_z0_a0" />
@@ -234,7 +234,7 @@
             </subcat>
         </type>
     </cat>
-    <cat name="Sound" filter="cat1">
+    <cat name="Sound" filter="cat1" pixmap="music">
         <type name="Album" filter="cat1_z0">
             <subcat name="Format">
                 <subfilter name="MP3" filter="cat1_z0_a0" />
@@ -500,7 +500,7 @@
             </subcat>
         </type>
     </cat>
-    <cat name="Games" filter="cat2">
+    <cat name="Games" filter="cat2" pixmap="controller">
         <type name="Everything" filter="cat2_zz">
             <subcat name="Platform">
                 <subfilter name="Windows" filter="cat2_zz_a0" />
@@ -550,7 +550,7 @@
             </subcat>
         </type>
     </cat>
-    <cat name="Applicatons" filter="cat3">
+    <cat name="Applications" filter="cat3" pixmap="application">
         <type name="Everything" filter="cat3_zz">
             <subcat name="Platform">
                 <subfilter name="Windows" filter="cat3_zz_a0" />

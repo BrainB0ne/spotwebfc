@@ -36,6 +36,10 @@ void MainWidget::connectSignalsSlots()
 
     connect(ui->contentsTreeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
             this, SLOT(slotContentsTreeWidgetItemChanged(QTreeWidgetItem*,int)));
+    connect(ui->contentsTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem*)),
+            this, SLOT(slotContentsTreeWidgetItemCollapsed(QTreeWidgetItem*)));
+    connect(ui->contentsTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)),
+            this, SLOT(slotContentsTreeWidgetItemExpanded(QTreeWidgetItem*)));
 }
 
 void MainWidget::initialize()
@@ -89,6 +93,7 @@ void MainWidget::loadContents()
             catItem->setCheckState(0, Qt::Unchecked);
             catItem->setText(0, eCat.attribute("name"));
             catItem->setText(1, eCat.attribute("filter"));
+            catItem->setIcon(0, QIcon(QString(":/images/%1.png").arg(eCat.attribute("pixmap"))));
             catItem->setExpanded(true);
 
             QDomNode nType = eCat.firstChild();
@@ -102,7 +107,6 @@ void MainWidget::loadContents()
                     typeItem->setCheckState(0, Qt::Unchecked);
                     typeItem->setText(0, eType.attribute("name"));
                     typeItem->setText(1, eType.attribute("filter"));
-                    //typeItem->setExpanded(true);
 
                     QDomNode nSubCat = eType.firstChild();
                     while (!nSubCat.isNull())
@@ -114,7 +118,6 @@ void MainWidget::loadContents()
                             subcatItem->setFlags(subcatItem->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
                             subcatItem->setCheckState(0, Qt::Unchecked);
                             subcatItem->setText(0, eSubCat.attribute("name"));
-                            //subcatItem->setExpanded(true);
 
                             QDomNode nSubFilter = eSubCat.firstChild();
                             while (!nSubFilter.isNull())
@@ -212,8 +215,7 @@ void MainWidget::slotAboutButtonClicked()
 
 void MainWidget::slotAddToolButtonClicked()
 {
-    QTreeWidgetItem* item = new QTreeWidgetItem(ui->filtersTreeWidget);
-    item->setText(0, "Name");
+    //TODO: add code here to add a new filter
 }
 
 void MainWidget::slotRemoveToolButtonClicked()
@@ -243,5 +245,17 @@ void MainWidget::slotClearAllToolButtonClicked()
 
 void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int column)
 {
+    //TODO: add code here!
+}
 
+void MainWidget::slotContentsTreeWidgetItemCollapsed(QTreeWidgetItem *item)
+{
+    ui->contentsTreeWidget->resizeColumnToContents(0);
+    ui->contentsTreeWidget->resizeColumnToContents(1);
+}
+
+void MainWidget::slotContentsTreeWidgetItemExpanded(QTreeWidgetItem *item)
+{
+    ui->contentsTreeWidget->resizeColumnToContents(0);
+    ui->contentsTreeWidget->resizeColumnToContents(1);
 }

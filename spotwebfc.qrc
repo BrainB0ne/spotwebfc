@@ -8,5 +8,9 @@
         <file>images/filesave.png</file>
         <file>images/filesaveas.png</file>
         <file>images/about.png</file>
+        <file>images/application.png</file>
+        <file>images/controller.png</file>
+        <file>images/music.png</file>
+        <file>images/picture.png</file>
     </qresource>
 </RCC>
