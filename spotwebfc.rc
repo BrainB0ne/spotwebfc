@@ -20,11 +20,11 @@ BEGIN
     BEGIN
         BLOCK   "040904b0"
         BEGIN
-            VALUE   "CompanyName",      "Me\0"
+            VALUE   "CompanyName",      "Copyleft\0"
             VALUE   "FileDescription",  "Application for creating Spotweb filters\0"
             VALUE   "FileVersion",      "0.0.0.1-alpha\0"
             VALUE   "InternalName",     "spotwebfc\0"
-            VALUE   "LegalCopyright",   "Copyleft 2012 by Me\0"
+            VALUE   "LegalCopyright",   "Copyleft 2012\0"
             VALUE   "OriginalFilename", "spotwebfc.exe\0"
             VALUE   "ProductName",      "Spotweb Filter Creator\0"
             VALUE   "ProductVersion",   "0.0.0.1-alpha\0"
