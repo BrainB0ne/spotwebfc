@@ -7,7 +7,7 @@
 #include <QtGui/QMessageBox>
 #include <QtXml/QDomDocument>
 
-#define SPOTWEB_AVAILABLE_FILTER_FILE "spotwebfc.xml"
+#define CONTENTS_FILE "spotwebfc.xml"
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
@@ -15,8 +15,8 @@ MainWidget::MainWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connectSignalsSlots();
     initialize();
+    connectSignalsSlots();
 }
 
 MainWidget::~MainWidget()
@@ -33,6 +33,9 @@ void MainWidget::connectSignalsSlots()
     connect(ui->addToolButton,      SIGNAL(clicked()), this, SLOT(slotAddToolButtonClicked()));
     connect(ui->removeToolButton,   SIGNAL(clicked()), this, SLOT(slotRemoveToolButtonClicked()));
     connect(ui->clearAllToolButton, SIGNAL(clicked()), this, SLOT(slotClearAllToolButtonClicked()));
+
+    connect(ui->contentsTreeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+            this, SLOT(slotContentsTreeWidgetItemChanged(QTreeWidgetItem*,int)));
 }
 
 void MainWidget::initialize()
@@ -50,19 +53,19 @@ void MainWidget::loadContents()
 {
     QDomDocument doc("spotwebfc");
 
-    QString filePath = qApp->applicationDirPath() + "/" + QString(SPOTWEB_AVAILABLE_FILTER_FILE);
+    QString filePath = qApp->applicationDirPath() + "/" + QString(CONTENTS_FILE);
 
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly))
     {
-        QMessageBox::critical(this, "Error", QString("Contents file: %1 could not be opened").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
+        QMessageBox::critical(this, "Error", QString("Contents file: %1 could not be opened").arg(CONTENTS_FILE));
         return;
     }
 
     if (!doc.setContent(&file))
     {
         file.close();
-        QMessageBox::critical(this, "Internal Error", QString("Contents data could not be read correctly").arg(SPOTWEB_AVAILABLE_FILTER_FILE));
+        QMessageBox::critical(this, "Internal Error", QString("Contents data could not be read correctly").arg(CONTENTS_FILE));
         return;
     }
 
@@ -82,6 +85,7 @@ void MainWidget::loadContents()
         if(!eCat.isNull())
         {
             catItem = new QTreeWidgetItem(ui->contentsTreeWidget);
+            catItem->setFlags(catItem->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
             catItem->setCheckState(0, Qt::Unchecked);
             catItem->setText(0, eCat.attribute("name"));
             catItem->setText(1, eCat.attribute("filter"));
@@ -94,10 +98,11 @@ void MainWidget::loadContents()
                 if(!eType.isNull())
                 {
                     typeItem = new QTreeWidgetItem(catItem);
+                    typeItem->setFlags(typeItem->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
                     typeItem->setCheckState(0, Qt::Unchecked);
                     typeItem->setText(0, eType.attribute("name"));
                     typeItem->setText(1, eType.attribute("filter"));
-                    typeItem->setExpanded(true);
+                    //typeItem->setExpanded(true);
 
                     QDomNode nSubCat = eType.firstChild();
                     while (!nSubCat.isNull())
@@ -106,8 +111,10 @@ void MainWidget::loadContents()
                         if(!eSubCat.isNull())
                         {
                             subcatItem = new QTreeWidgetItem(typeItem);
+                            subcatItem->setFlags(subcatItem->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+                            subcatItem->setCheckState(0, Qt::Unchecked);
                             subcatItem->setText(0, eSubCat.attribute("name"));
-                            subcatItem->setExpanded(true);
+                            //subcatItem->setExpanded(true);
 
                             QDomNode nSubFilter = eSubCat.firstChild();
                             while (!nSubFilter.isNull())
@@ -116,10 +123,10 @@ void MainWidget::loadContents()
                                 if(!eSubFilter.isNull())
                                 {
                                     subfilterItem = new QTreeWidgetItem(subcatItem);
+                                    subfilterItem->setFlags(subfilterItem->flags() | Qt::ItemIsUserCheckable);
                                     subfilterItem->setCheckState(0, Qt::Unchecked);
                                     subfilterItem->setText(0, eSubFilter.attribute("name"));
                                     subfilterItem->setText(1, eSubFilter.attribute("filter"));
-                                    subfilterItem->setExpanded(true);
                                 }
 
                                 nSubFilter = nSubFilter.nextSibling();
@@ -186,6 +193,18 @@ void MainWidget::slotRemoveToolButtonClicked()
 }
 
 void MainWidget::slotClearAllToolButtonClicked()
+{
+    QTreeWidgetItemIterator it(ui->contentsTreeWidget);
+    while (*it)
+    {
+        (*it)->setCheckState(0, Qt::Unchecked);
+        ++it;
+    }
+
+    ui->contentsTreeWidget->viewport()->update();
+}
+
+void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int column)
 {
 
 }

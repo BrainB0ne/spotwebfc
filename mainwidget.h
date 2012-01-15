@@ -2,6 +2,7 @@
 #define MAINWIDGET_H
 
 #include <QWidget>
+#include <QTreeWidgetItem>
 
 namespace Ui {
 class MainWidget;
@@ -27,6 +28,7 @@ private slots:
     void slotAddToolButtonClicked();
     void slotRemoveToolButtonClicked();
     void slotClearAllToolButtonClicked();
+    void slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int column);
 
 private:
     Ui::MainWidget *ui;
