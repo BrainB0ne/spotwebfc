@@ -43,10 +43,10 @@ void MainWidget::initialize()
 
     ui->filtersTreeWidget->setRootIsDecorated(false);
 
-    loadAvailableFilters();
+    loadContents();
 }
 
-void MainWidget::loadAvailableFilters()
+void MainWidget::loadContents()
 {
     QDomDocument doc("spotwebfc");
 
@@ -70,19 +70,55 @@ void MainWidget::loadAvailableFilters()
 
     QDomElement docElem = doc.documentElement();
 
-    QTreeWidgetItem *item = 0;
-    QDomNode n = docElem.firstChild();
-    while(!n.isNull())
+    QTreeWidgetItem *catItem = 0;
+    QTreeWidgetItem *typeItem = 0;
+    QTreeWidgetItem *subcatItem = 0;
+
+    QDomNode nCat = docElem.firstChild();
+    while(!nCat.isNull())
     {
-        QDomElement e = n.toElement();
-        if(!e.isNull())
+        QDomElement eCat = nCat.toElement();
+        if(!eCat.isNull())
         {
-            item = new QTreeWidgetItem(ui->contentsTreeWidget);
-            item->setCheckState(0, Qt::Unchecked);
-            item->setText(0, e.attribute("name"));
+            catItem = new QTreeWidgetItem(ui->contentsTreeWidget);
+            catItem->setCheckState(0, Qt::Unchecked);
+            catItem->setText(0, eCat.attribute("name"));
+            catItem->setText(1, eCat.attribute("filter"));
+            catItem->setExpanded(true);
+
+            QDomNode nType = eCat.firstChild();
+            while (!nType.isNull())
+            {
+                QDomElement eType = nType.toElement();
+                if(!eType.isNull())
+                {
+                    typeItem = new QTreeWidgetItem(catItem);
+                    typeItem->setCheckState(0, Qt::Unchecked);
+                    typeItem->setText(0, eType.attribute("name"));
+                    typeItem->setText(1, eType.attribute("filter"));
+                    typeItem->setExpanded(true);
+
+                    QDomNode nSubCat = eType.firstChild();
+                    while (!nSubCat.isNull())
+                    {
+                        QDomElement eSubCat = nSubCat.toElement();
+                        if(!eSubCat.isNull())
+                        {
+                            subcatItem = new QTreeWidgetItem(typeItem);
+                            subcatItem->setText(0, eSubCat.attribute("name"));
+                            subcatItem->setText(1, eSubCat.attribute("filter"));
+                            subcatItem->setExpanded(true);
+                        }
+
+                        nSubCat = nSubCat.nextSibling();
+                    }
+                }
+
+                nType = nType.nextSibling();
+            }
         }
 
-        n = n.nextSibling();
+        nCat = nCat.nextSibling();
     }
 }
 

@@ -1,4 +1,104 @@
 <spotwebfc>
-    <filter name="Beeld" />
-    <filter name="Geluid" />
+    <cat name="Beeld" filter="cat0">
+        <type name="Film" filter="cat0_z0">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Taal">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+        <type name="Serie" filter="cat0_z1">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Taal">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+        <type name="Boek" filter="cat0_z2">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Taal">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+        <type name="Erotiek" filter="cat0_z3">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Taal">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+    </cat>
+    <cat name="Geluid" filter="cat1">
+        <type name="Album" filter="cat1_z0">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Bitrate">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+        <type name="Liveset" filter="cat1_z1">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Bitrate">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+        <type name="Podcast" filter="cat1_z2">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Bitrate">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+        <type name="Luisterboek" filter="cat1_z3">
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Bron">
+            </subcat>
+            <subcat name="Bitrate">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+    </cat>
+    <cat name="Spellen" filter="cat2">
+        <type name="Alles" filter="cat2_zz">
+            <subcat name="Platform">
+            </subcat>
+            <subcat name="Formaat">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+    </cat>
+    <cat name="Applicaties" filter="cat3">
+        <type name="Alles" filter="cat3_zz">
+            <subcat name="Platform">
+            </subcat>
+            <subcat name="Genre">
+            </subcat>
+        </type>
+    </cat>
 </spotwebfc>

@@ -75,15 +75,8 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="filtersLayoutWidget">
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="filtersLabel">
-         <property name="text">
-          <string>Filters</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0" colspan="3">
         <widget class="QTreeWidget" name="filtersTreeWidget">
          <column>
@@ -134,22 +127,27 @@
          </property>
         </spacer>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="contentsLabel">
+        <widget class="QLabel" name="filtersLabel">
          <property name="text">
-          <string>Contents</string>
+          <string>Filters</string>
          </property>
         </widget>
        </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="contentsLayoutWidget">
+      <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="0" colspan="2">
         <widget class="QTreeWidget" name="contentsTreeWidget">
          <column>
           <property name="text">
            <string>Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Filter</string>
           </property>
          </column>
         </widget>
@@ -180,6 +178,13 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="contentsLabel">
+         <property name="text">
+          <string>Contents</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
