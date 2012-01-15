@@ -1,2 +1,4 @@
-<spotwebfc>    
+<spotwebfc>
+    <filter name="Beeld" />
+    <filter name="Geluid" />
 </spotwebfc>
