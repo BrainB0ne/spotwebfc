@@ -1,5 +1,5 @@
 <spotwebfc>
-    <cat name="Image" filter="cat0" pixmap="picture">
+    <cat name="Image" filter="cat0" pixmap="film">
         <type name="Movie" filter="cat0_z0">
             <subcat name="Format">
                 <subfilter name="DivX" filter="cat0_z0_a0" />

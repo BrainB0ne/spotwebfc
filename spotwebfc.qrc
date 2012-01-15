@@ -12,5 +12,6 @@
         <file>images/controller.png</file>
         <file>images/music.png</file>
         <file>images/picture.png</file>
+        <file>images/film.png</file>
     </qresource>
 </RCC>

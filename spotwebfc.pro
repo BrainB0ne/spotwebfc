@@ -64,7 +64,8 @@ OTHER_FILES += \
     images/picture.png \
     images/music.png \
     images/controller.png \
-    images/application.png
+    images/application.png \
+    images/film.png
 
 RESOURCES += \
     spotwebfc.qrc
