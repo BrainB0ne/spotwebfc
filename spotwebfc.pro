@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml
 
 TARGET = spotwebfc
 TEMPLATE = app
@@ -55,7 +55,8 @@ OTHER_FILES += \
     spotwebfc.rc \
     images/filesaveas.png \
     images/filesave.png \
-    images/fileload.png
+    images/fileload.png \
+    spotwebfc.xml
 
 RESOURCES += \
     spotwebfc.qrc
