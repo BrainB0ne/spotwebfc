@@ -41,13 +41,18 @@ RC_FILE = spotwebfc.rc
 
 SOURCES += main.cpp\
         mainwidget.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    filtertreewidgetitem.cpp \
+    newfilterdialog.cpp
 
 HEADERS  += mainwidget.h \
-    aboutdialog.h
+    aboutdialog.h \
+    filtertreewidgetitem.h \
+    newfilterdialog.h
 
 FORMS    += mainwidget.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    newfilterdialog.ui
 
 OTHER_FILES += \
     images/remove.png \
@@ -66,7 +71,8 @@ OTHER_FILES += \
     images/controller.png \
     images/application.png \
     images/film.png \
-    images/eye.png
+    images/eye.png \
+    README
 
 RESOURCES += \
     spotwebfc.qrc

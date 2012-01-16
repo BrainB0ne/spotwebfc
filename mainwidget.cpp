@@ -2,6 +2,8 @@
 #include "ui_mainwidget.h"
 
 #include "aboutdialog.h"
+#include "newfilterdialog.h"
+#include "filtertreewidgetitem.h"
 
 #include <QtGui/QFileDialog>
 #include <QtGui/QMessageBox>
@@ -37,9 +39,9 @@ void MainWidget::connectSignalsSlots()
     connect(ui->contentsTreeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
             this, SLOT(slotContentsTreeWidgetItemChanged(QTreeWidgetItem*,int)));
     connect(ui->contentsTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem*)),
-            this, SLOT(slotContentsTreeWidgetItemCollapsed(QTreeWidgetItem*)));
+            this, SLOT(slotContentsTreeWidgetItemCollapsed()));
     connect(ui->contentsTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)),
-            this, SLOT(slotContentsTreeWidgetItemExpanded(QTreeWidgetItem*)));
+            this, SLOT(slotContentsTreeWidgetItemExpanded()));
 }
 
 void MainWidget::initialize()
@@ -215,7 +217,20 @@ void MainWidget::slotAboutButtonClicked()
 
 void MainWidget::slotAddToolButtonClicked()
 {
-    //TODO: add code here to add a new filter
+    NewFilterDialog* newFilterDlg = new NewFilterDialog(this);
+
+    if(newFilterDlg)
+    {
+        if(newFilterDlg->exec() == QDialog::Accepted)
+        {
+            FilterTreeWidgetItem* filterItem = new FilterTreeWidgetItem(ui->filtersTreeWidget);
+            filterItem->setName(newFilterDlg->getName());
+            filterItem->setText(0, newFilterDlg->getName());
+        }
+
+        delete newFilterDlg;
+        newFilterDlg = 0;
+    }
 }
 
 void MainWidget::slotRemoveToolButtonClicked()
@@ -248,13 +263,13 @@ void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int co
     //TODO: add code here!
 }
 
-void MainWidget::slotContentsTreeWidgetItemCollapsed(QTreeWidgetItem *item)
+void MainWidget::slotContentsTreeWidgetItemCollapsed()
 {
     ui->contentsTreeWidget->resizeColumnToContents(0);
     ui->contentsTreeWidget->resizeColumnToContents(1);
 }
 
-void MainWidget::slotContentsTreeWidgetItemExpanded(QTreeWidgetItem *item)
+void MainWidget::slotContentsTreeWidgetItemExpanded()
 {
     ui->contentsTreeWidget->resizeColumnToContents(0);
     ui->contentsTreeWidget->resizeColumnToContents(1);

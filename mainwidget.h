@@ -30,8 +30,8 @@ private slots:
     void slotClearAllToolButtonClicked();
 
     void slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int column);
-    void slotContentsTreeWidgetItemCollapsed(QTreeWidgetItem *item);
-    void slotContentsTreeWidgetItemExpanded(QTreeWidgetItem *item);
+    void slotContentsTreeWidgetItemCollapsed();
+    void slotContentsTreeWidgetItemExpanded();
 
 private:
     Ui::MainWidget *ui;
