@@ -26,5 +26,6 @@ void NewFilterDialog::accept()
     else
     {
         QMessageBox::warning(this, tr("Warning"), tr("Filter Name can't be empty!"));
+        ui->nameLineEdit->setFocus();
     }
 }
