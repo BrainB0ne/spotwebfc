@@ -13,5 +13,6 @@
         <file>images/music.png</file>
         <file>images/picture.png</file>
         <file>images/film.png</file>
+        <file>images/eye.png</file>
     </qresource>
 </RCC>
