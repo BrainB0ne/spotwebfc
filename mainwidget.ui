@@ -204,6 +204,18 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>openButton</tabstop>
+  <tabstop>saveButton</tabstop>
+  <tabstop>saveAsButton</tabstop>
+  <tabstop>fileLineEdit</tabstop>
+  <tabstop>aboutButton</tabstop>
+  <tabstop>filtersTreeWidget</tabstop>
+  <tabstop>contentsTreeWidget</tabstop>
+  <tabstop>addToolButton</tabstop>
+  <tabstop>removeToolButton</tabstop>
+  <tabstop>clearAllToolButton</tabstop>
+ </tabstops>
  <resources>
   <include location="spotwebfc.qrc"/>
  </resources>
