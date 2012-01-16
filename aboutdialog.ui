@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
-    <height>215</height>
+    <width>585</width>
+    <height>225</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,63 +18,74 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>318</width>
-    <height>215</height>
+    <width>585</width>
+    <height>225</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>About</string>
+   <string>About Spotweb Filter Creator</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Information</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" rowspan="4">
-       <widget class="QLabel" name="pixLabel">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="spotwebfc.qrc">:/images/filter.png</pixmap>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="nameLabel">
-        <property name="text">
-         <string>Spotweb Filter Creator</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="versionLabel">
-        <property name="text">
-         <string>Version: x.x.x.x</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="copyLeftLabel">
-        <property name="text">
-         <string>Copyleft 2012</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="pixLabel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="spotwebfc.qrc">:/images/filter.png</pixmap>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLabel" name="nameLabel">
+            <property name="text">
+             <string>Spotweb Filter Creator</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="versionLabel">
+            <property name="text">
+             <string>Version: x.x.x.x</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="buildDateLabel">
+            <property name="text">
+             <string>Build Date: x-x-x-x</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="copyLeftLabel">
+            <property name="text">
+             <string>Copyleft 2012</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>The program is provided AS IS with NO WARRANTY OF ANY KIND,
+INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE.</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -85,7 +96,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Close</set>
      </property>
     </widget>
    </item>

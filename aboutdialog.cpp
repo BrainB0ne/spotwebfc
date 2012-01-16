@@ -7,6 +7,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->buildDateLabel->setText(QString("Build Date: %1 - %2").arg(__DATE__).arg(__TIME__));
     ui->versionLabel->setText("Version: 0.0.0.1-alpha");
 }
 
