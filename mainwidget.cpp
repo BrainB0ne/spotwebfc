@@ -268,6 +268,7 @@ void MainWidget::slotClearAllToolButtonClicked()
 void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int column)
 {
     //TODO: add code here!
+    ui->contentsTreeWidget->viewport()->update();
 }
 
 void MainWidget::slotContentsTreeWidgetItemCollapsed()
