@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QTreeWidgetItem>
 
+class FilterTreeWidgetItem;
+
 namespace Ui {
 class MainWidget;
 }
@@ -33,8 +35,13 @@ private slots:
     void slotContentsTreeWidgetItemCollapsed();
     void slotContentsTreeWidgetItemExpanded();
 
+    void slotFiltersTreeWidgetContextMenu(const QPoint& pos);
+    void slotShowFilterProperties();
+
 private:
     Ui::MainWidget *ui;
+
+    FilterTreeWidgetItem* m_pCurrentFilterItem;
 };
 
 #endif // MAINWIDGET_H

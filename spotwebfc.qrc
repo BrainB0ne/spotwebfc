@@ -14,5 +14,33 @@
         <file>images/picture.png</file>
         <file>images/film.png</file>
         <file>images/eye.png</file>
+        <file>images/today.png</file>
+        <file>images/dvd.png</file>
+        <file>images/pda.png</file>
+        <file>images/bluray.png</file>
+        <file>images/book.png</file>
+        <file>images/custom.png</file>
+        <file>images/divx.png</file>
+        <file>images/female.png</file>
+        <file>images/hd.png</file>
+        <file>images/home.png</file>
+        <file>images/ipod.png</file>
+        <file>images/linux.png</file>
+        <file>images/mac.png</file>
+        <file>images/mpg.png</file>
+        <file>images/nintendo_ds.png</file>
+        <file>images/nintendo_wii.png</file>
+        <file>images/phone.png</file>
+        <file>images/playstation.png</file>
+        <file>images/refresh.png</file>
+        <file>images/tag.png</file>
+        <file>images/tv.png</file>
+        <file>images/vista.png</file>
+        <file>images/windows.png</file>
+        <file>images/wmv.png</file>
+        <file>images/xbox.png</file>
+        <file>images/fav.png</file>
+        <file>images/help.png</file>
+        <file>images/download.png</file>
     </qresource>
 </RCC>

@@ -43,16 +43,19 @@ SOURCES += main.cpp\
         mainwidget.cpp \
     aboutdialog.cpp \
     filtertreewidgetitem.cpp \
-    newfilterdialog.cpp
+    newfilterdialog.cpp \
+    filterpropertiesdialog.cpp
 
 HEADERS  += mainwidget.h \
     aboutdialog.h \
     filtertreewidgetitem.h \
-    newfilterdialog.h
+    newfilterdialog.h \
+    filterpropertiesdialog.h
 
 FORMS    += mainwidget.ui \
     aboutdialog.ui \
-    newfilterdialog.ui
+    newfilterdialog.ui \
+    filterpropertiesdialog.ui
 
 OTHER_FILES += \
     images/remove.png \
@@ -72,7 +75,35 @@ OTHER_FILES += \
     images/application.png \
     images/film.png \
     images/eye.png \
-    README
+    README \
+    images/xbox.png \
+    images/wmv.png \
+    images/windows.png \
+    images/vista.png \
+    images/tv.png \
+    images/tag.png \
+    images/refresh.png \
+    images/playstation.png \
+    images/phone.png \
+    images/nintendo_wii.png \
+    images/nintendo_ds.png \
+    images/mpg.png \
+    images/mac.png \
+    images/linux.png \
+    images/ipod.png \
+    images/home.png \
+    images/hd.png \
+    images/female.png \
+    images/divx.png \
+    images/custom.png \
+    images/book.png \
+    images/bluray.png \
+    images/pda.png \
+    images/dvd.png \
+    images/today.png \
+    images/fav.png \
+    images/download.png \
+    images/help.png
 
 RESOURCES += \
     spotwebfc.qrc

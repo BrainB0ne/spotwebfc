@@ -52,7 +52,7 @@
       <string>Save the Spotweb filters to another file</string>
      </property>
      <property name="text">
-      <string>&amp;Save As...</string>
+      <string>Save &amp;As...</string>
      </property>
      <property name="icon">
       <iconset resource="spotwebfc.qrc">
@@ -79,6 +79,9 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="1" column="0" colspan="3">
         <widget class="QTreeWidget" name="filtersTreeWidget">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
          <column>
           <property name="text">
            <string>Name</string>
@@ -193,7 +196,7 @@
    <item row="0" column="4">
     <widget class="QPushButton" name="aboutButton">
      <property name="text">
-      <string>&amp;About...</string>
+      <string>A&amp;bout...</string>
      </property>
      <property name="icon">
       <iconset resource="spotwebfc.qrc">

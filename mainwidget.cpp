@@ -3,10 +3,12 @@
 
 #include "aboutdialog.h"
 #include "newfilterdialog.h"
+#include "filterpropertiesdialog.h"
 #include "filtertreewidgetitem.h"
 
 #include <QtGui/QFileDialog>
 #include <QtGui/QMessageBox>
+#include <QtGui/QMenu>
 #include <QtXml/QDomDocument>
 
 #define CONTENTS_FILE "spotwebfc.xml"
@@ -42,10 +44,15 @@ void MainWidget::connectSignalsSlots()
             this, SLOT(slotContentsTreeWidgetItemCollapsed()));
     connect(ui->contentsTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)),
             this, SLOT(slotContentsTreeWidgetItemExpanded()));
+
+    connect(ui->filtersTreeWidget, SIGNAL(customContextMenuRequested(const QPoint&)),
+            this, SLOT(slotFiltersTreeWidgetContextMenu(const QPoint&)));
 }
 
 void MainWidget::initialize()
 {
+    m_pCurrentFilterItem = 0;
+
     QList<int> sizeList;
     sizeList << 1 << 1;
     ui->splitter->setSizes(sizeList);
@@ -273,4 +280,43 @@ void MainWidget::slotContentsTreeWidgetItemExpanded()
 {
     ui->contentsTreeWidget->resizeColumnToContents(0);
     ui->contentsTreeWidget->resizeColumnToContents(1);
+}
+
+void MainWidget::slotFiltersTreeWidgetContextMenu(const QPoint &pos)
+{
+    m_pCurrentFilterItem = (FilterTreeWidgetItem*)(ui->filtersTreeWidget->itemAt(pos));
+
+    if (m_pCurrentFilterItem == 0)
+    {
+        QMenu menu(ui->filtersTreeWidget);
+        menu.addAction(tr("&Add"), this, SLOT(slotAddToolButtonClicked()));
+
+        menu.exec(ui->filtersTreeWidget->mapToGlobal(pos));
+    }
+    else
+    {
+        QMenu menu(ui->filtersTreeWidget);
+        menu.addAction(tr("&Remove"), this, SLOT(slotRemoveToolButtonClicked()));
+        menu.addAction(tr("&Properties"), this, SLOT(slotShowFilterProperties()));
+
+        menu.exec(ui->filtersTreeWidget->mapToGlobal(pos));
+    }
+}
+
+void MainWidget::slotShowFilterProperties()
+{
+    FilterPropertiesDialog* filterPropDlg = new FilterPropertiesDialog(this);
+
+    if(filterPropDlg)
+    {
+        filterPropDlg->setFilterItem(m_pCurrentFilterItem);
+        filterPropDlg->initialize();
+
+        if(filterPropDlg->exec() == QDialog::Accepted)
+        {
+            // TODO: save properties to item
+        }
+    }
+
+    m_pCurrentFilterItem = 0;
 }
