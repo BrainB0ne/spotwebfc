@@ -39,7 +39,7 @@ void MainWidget::connectSignalsSlots()
     connect(ui->clearAllToolButton, SIGNAL(clicked()), this, SLOT(slotClearAllToolButtonClicked()));
 
     connect(ui->contentsTreeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
-            this, SLOT(slotContentsTreeWidgetItemChanged(QTreeWidgetItem*,int)));
+            this, SLOT(slotContentsTreeWidgetItemChanged(QTreeWidgetItem*)));
     connect(ui->contentsTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem*)),
             this, SLOT(slotContentsTreeWidgetItemCollapsed()));
     connect(ui->contentsTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)),
@@ -47,6 +47,8 @@ void MainWidget::connectSignalsSlots()
 
     connect(ui->filtersTreeWidget, SIGNAL(customContextMenuRequested(const QPoint&)),
             this, SLOT(slotFiltersTreeWidgetContextMenu(const QPoint&)));
+    connect(ui->filtersTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+            this, SLOT(slotFiltersTreeWidgetItemDoubleClicked(QTreeWidgetItem*)));
 }
 
 void MainWidget::initialize()
@@ -265,10 +267,14 @@ void MainWidget::slotClearAllToolButtonClicked()
     ui->contentsTreeWidget->viewport()->update();
 }
 
-void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int column)
+void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item)
 {
     //TODO: add code here!
-    ui->contentsTreeWidget->viewport()->update();
+
+    if(item)
+    {
+        ui->contentsTreeWidget->viewport()->update();
+    }
 }
 
 void MainWidget::slotContentsTreeWidgetItemCollapsed()
@@ -286,21 +292,27 @@ void MainWidget::slotContentsTreeWidgetItemExpanded()
 void MainWidget::slotFiltersTreeWidgetContextMenu(const QPoint &pos)
 {
     m_pCurrentFilterItem = (FilterTreeWidgetItem*)(ui->filtersTreeWidget->itemAt(pos));
+    QMenu menu(ui->filtersTreeWidget);
 
     if (m_pCurrentFilterItem == 0)
     {
-        QMenu menu(ui->filtersTreeWidget);
         menu.addAction(tr("&Add"), this, SLOT(slotAddToolButtonClicked()));
-
-        menu.exec(ui->filtersTreeWidget->mapToGlobal(pos));
     }
     else
     {
-        QMenu menu(ui->filtersTreeWidget);
         menu.addAction(tr("&Remove"), this, SLOT(slotRemoveToolButtonClicked()));
         menu.addAction(tr("&Properties"), this, SLOT(slotShowFilterProperties()));
+    }
 
-        menu.exec(ui->filtersTreeWidget->mapToGlobal(pos));
+    menu.exec(QCursor::pos());
+}
+
+void MainWidget::slotFiltersTreeWidgetItemDoubleClicked(QTreeWidgetItem* item)
+{
+    if(item)
+    {
+        m_pCurrentFilterItem = (FilterTreeWidgetItem*)item;
+        slotShowFilterProperties();
     }
 }
 

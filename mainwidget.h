@@ -31,11 +31,12 @@ private slots:
     void slotRemoveToolButtonClicked();
     void slotClearAllToolButtonClicked();
 
-    void slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item, int column);
+    void slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item);
     void slotContentsTreeWidgetItemCollapsed();
     void slotContentsTreeWidgetItemExpanded();
 
     void slotFiltersTreeWidgetContextMenu(const QPoint& pos);
+    void slotFiltersTreeWidgetItemDoubleClicked(QTreeWidgetItem* item);
     void slotShowFilterProperties();
 
 private:
