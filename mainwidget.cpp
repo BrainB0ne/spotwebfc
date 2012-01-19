@@ -101,10 +101,10 @@ void MainWidget::loadContents()
         {
             catItem = new QTreeWidgetItem(ui->contentsTreeWidget);
             catItem->setFlags(catItem->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
-            catItem->setCheckState(0, Qt::Unchecked);
-            catItem->setText(0, eCat.attribute("name"));
-            catItem->setText(1, eCat.attribute("filter"));
-            catItem->setIcon(0, QIcon(QString(":/images/%1.png").arg(eCat.attribute("pixmap"))));
+            catItem->setCheckState(CONTENTS_COLUMN_TYPE, Qt::Unchecked);
+            catItem->setText(CONTENTS_COLUMN_TYPE, eCat.attribute("name"));
+            catItem->setText(CONTENTS_COLUMN_FILTER, eCat.attribute("filter"));
+            catItem->setIcon(CONTENTS_COLUMN_TYPE, QIcon(QString(":/images/%1.png").arg(eCat.attribute("pixmap"))));
             catItem->setExpanded(true);
 
             QDomNode nType = eCat.firstChild();
@@ -115,9 +115,9 @@ void MainWidget::loadContents()
                 {
                     typeItem = new QTreeWidgetItem(catItem);
                     typeItem->setFlags(typeItem->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
-                    typeItem->setCheckState(0, Qt::Unchecked);
-                    typeItem->setText(0, eType.attribute("name"));
-                    typeItem->setText(1, eType.attribute("filter"));
+                    typeItem->setCheckState(CONTENTS_COLUMN_TYPE, Qt::Unchecked);
+                    typeItem->setText(CONTENTS_COLUMN_TYPE, eType.attribute("name"));
+                    typeItem->setText(CONTENTS_COLUMN_FILTER, eType.attribute("filter"));
 
                     QDomNode nSubCat = eType.firstChild();
                     while (!nSubCat.isNull())
@@ -127,8 +127,8 @@ void MainWidget::loadContents()
                         {
                             subcatItem = new QTreeWidgetItem(typeItem);
                             subcatItem->setFlags(subcatItem->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
-                            subcatItem->setCheckState(0, Qt::Unchecked);
-                            subcatItem->setText(0, eSubCat.attribute("name"));
+                            subcatItem->setCheckState(CONTENTS_COLUMN_TYPE, Qt::Unchecked);
+                            subcatItem->setText(CONTENTS_COLUMN_TYPE, eSubCat.attribute("name"));
 
                             QDomNode nSubFilter = eSubCat.firstChild();
                             while (!nSubFilter.isNull())
@@ -138,9 +138,9 @@ void MainWidget::loadContents()
                                 {
                                     subfilterItem = new QTreeWidgetItem(subcatItem);
                                     subfilterItem->setFlags(subfilterItem->flags() | Qt::ItemIsUserCheckable);
-                                    subfilterItem->setCheckState(0, Qt::Unchecked);
-                                    subfilterItem->setText(0, eSubFilter.attribute("name"));
-                                    subfilterItem->setText(1, eSubFilter.attribute("filter"));
+                                    subfilterItem->setCheckState(CONTENTS_COLUMN_TYPE, Qt::Unchecked);
+                                    subfilterItem->setText(CONTENTS_COLUMN_TYPE, eSubFilter.attribute("name"));
+                                    subfilterItem->setText(CONTENTS_COLUMN_FILTER, eSubFilter.attribute("filter"));
                                 }
 
                                 nSubFilter = nSubFilter.nextSibling();
@@ -158,8 +158,8 @@ void MainWidget::loadContents()
         nCat = nCat.nextSibling();
     }
 
-    ui->contentsTreeWidget->resizeColumnToContents(0);
-    ui->contentsTreeWidget->resizeColumnToContents(1);
+    ui->contentsTreeWidget->resizeColumnToContents(CONTENTS_COLUMN_TYPE);
+    ui->contentsTreeWidget->resizeColumnToContents(CONTENTS_COLUMN_FILTER);
 }
 
 void MainWidget::slotOpenButtonClicked()
@@ -234,9 +234,9 @@ void MainWidget::slotAddToolButtonClicked()
         {
             FilterTreeWidgetItem* filterItem = new FilterTreeWidgetItem(ui->filtersTreeWidget);
             filterItem->setName(newFilterDlg->getName());
-            filterItem->setText(0, newFilterDlg->getName());
+            filterItem->setText(FILTER_COLUMN_NAME, newFilterDlg->getName());
             filterItem->setIconName("custom");
-            filterItem->setIcon(0, QIcon(":/images/custom.png"));
+            filterItem->setIcon(FILTER_COLUMN_NAME, QIcon(":/images/custom.png"));
 
             ui->filtersTreeWidget->clearSelection();
             ui->filtersTreeWidget->setCurrentItem(filterItem);
@@ -267,7 +267,7 @@ void MainWidget::slotClearAllToolButtonClicked()
     QTreeWidgetItemIterator it(ui->contentsTreeWidget, QTreeWidgetItemIterator::All);
     while (*it)
     {
-        (*it)->setCheckState(0, Qt::Unchecked);
+        (*it)->setCheckState(CONTENTS_COLUMN_TYPE, Qt::Unchecked);
         ++it;
     }
 
@@ -283,11 +283,11 @@ void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item)
         if(selItems.count() == 1)
         {
             FilterTreeWidgetItem* selectedFilterItem = (FilterTreeWidgetItem*)(selItems.at(0));
-            QString filter = item->text(1);
+            QString filter = item->text(CONTENTS_COLUMN_FILTER);
 
             if(!filter.isEmpty())
             {
-                if(item->checkState(0) == Qt::Checked)
+                if(item->checkState(CONTENTS_COLUMN_TYPE) == Qt::Checked)
                 {
                     QTreeWidgetItem* curItem = item;
                     QStringList contentList;
@@ -295,13 +295,13 @@ void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item)
 
                     while(curItem)
                     {
-                        contentList.prepend(curItem->text(0));
+                        contentList.prepend(curItem->text(CONTENTS_COLUMN_TYPE));
                         curItem = curItem->parent();
                     }
 
                     selectedFilterItem->appendContent(contentList.join(" -> "));
                 }
-                else if(item->checkState(0) == Qt::Unchecked)
+                else if(item->checkState(CONTENTS_COLUMN_TYPE) == Qt::Unchecked)
                 {
                     QTreeWidgetItem* curItem = item;
                     QStringList contentList;
@@ -309,7 +309,7 @@ void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item)
 
                     while(curItem)
                     {
-                        contentList.prepend(curItem->text(0));
+                        contentList.prepend(curItem->text(CONTENTS_COLUMN_TYPE));
                         curItem = curItem->parent();
                     }
 
@@ -324,14 +324,14 @@ void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item)
 
 void MainWidget::slotContentsTreeWidgetItemCollapsed()
 {
-    ui->contentsTreeWidget->resizeColumnToContents(0);
-    ui->contentsTreeWidget->resizeColumnToContents(1);
+    ui->contentsTreeWidget->resizeColumnToContents(CONTENTS_COLUMN_TYPE);
+    ui->contentsTreeWidget->resizeColumnToContents(CONTENTS_COLUMN_FILTER);
 }
 
 void MainWidget::slotContentsTreeWidgetItemExpanded()
 {
-    ui->contentsTreeWidget->resizeColumnToContents(0);
-    ui->contentsTreeWidget->resizeColumnToContents(1);
+    ui->contentsTreeWidget->resizeColumnToContents(CONTENTS_COLUMN_TYPE);
+    ui->contentsTreeWidget->resizeColumnToContents(CONTENTS_COLUMN_FILTER);
 }
 
 void MainWidget::slotFiltersTreeWidgetContextMenu(const QPoint &pos)

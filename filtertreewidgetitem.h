@@ -3,6 +3,8 @@
 
 #include <QTreeWidgetItem>
 
+#define FILTER_COLUMN_NAME  0
+
 class FilterTreeWidgetItem : public QTreeWidgetItem
 {
 public:

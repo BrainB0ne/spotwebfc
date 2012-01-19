@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QTreeWidgetItem>
 
+#define CONTENTS_COLUMN_TYPE   0
+#define CONTENTS_COLUMN_FILTER 1
+
 class FilterTreeWidgetItem;
 
 namespace Ui {

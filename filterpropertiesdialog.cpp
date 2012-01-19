@@ -68,9 +68,9 @@ void FilterPropertiesDialog::accept()
         if(m_pFilterItem)
         {
             m_pFilterItem->setName(ui->nameLineEdit->text());
-            m_pFilterItem->setText(0, ui->nameLineEdit->text());
+            m_pFilterItem->setText(FILTER_COLUMN_NAME, ui->nameLineEdit->text());
             m_pFilterItem->setIconName(ui->iconComboBox->currentText());
-            m_pFilterItem->setIcon(0, ui->iconComboBox->itemIcon(ui->iconComboBox->currentIndex()));
+            m_pFilterItem->setIcon(FILTER_COLUMN_NAME, ui->iconComboBox->itemIcon(ui->iconComboBox->currentIndex()));
         }
 
         QDialog::accept();
