@@ -56,6 +56,8 @@ void FilterPropertiesDialog::initialize()
     if(m_pFilterItem)
     {
         ui->nameLineEdit->setText(m_pFilterItem->getName());
+        ui->iconComboBox->setCurrentIndex(ui->iconComboBox->findText(m_pFilterItem->getIconName()));
+        ui->contentsListWidget->insertItems(0, m_pFilterItem->getContents());
     }
 }
 
@@ -67,8 +69,8 @@ void FilterPropertiesDialog::accept()
         {
             m_pFilterItem->setName(ui->nameLineEdit->text());
             m_pFilterItem->setText(0, ui->nameLineEdit->text());
-
-            // TODO: Save other information also!
+            m_pFilterItem->setIconName(ui->iconComboBox->currentText());
+            m_pFilterItem->setIcon(0, ui->iconComboBox->itemIcon(ui->iconComboBox->currentIndex()));
         }
 
         QDialog::accept();

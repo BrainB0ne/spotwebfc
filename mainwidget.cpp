@@ -235,6 +235,13 @@ void MainWidget::slotAddToolButtonClicked()
             FilterTreeWidgetItem* filterItem = new FilterTreeWidgetItem(ui->filtersTreeWidget);
             filterItem->setName(newFilterDlg->getName());
             filterItem->setText(0, newFilterDlg->getName());
+            filterItem->setIconName("custom");
+            filterItem->setIcon(0, QIcon(":/images/custom.png"));
+
+            ui->filtersTreeWidget->clearSelection();
+            ui->filtersTreeWidget->setCurrentItem(filterItem);
+            filterItem->setSelected(true);
+            ui->filtersTreeWidget->setFocus();
         }
 
         delete newFilterDlg;
@@ -269,10 +276,48 @@ void MainWidget::slotClearAllToolButtonClicked()
 
 void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item)
 {
-    //TODO: add code here!
-
     if(item)
     {
+        QList<QTreeWidgetItem*> selItems = ui->filtersTreeWidget->selectedItems();
+
+        if(selItems.count() == 1)
+        {
+            FilterTreeWidgetItem* selectedFilterItem = (FilterTreeWidgetItem*)(selItems.at(0));
+            QString filter = item->text(1);
+
+            if(!filter.isEmpty())
+            {
+                if(item->checkState(0) == Qt::Checked)
+                {
+                    QTreeWidgetItem* curItem = item;
+                    QStringList contentList;
+                    selectedFilterItem->appendFilter(filter);
+
+                    while(curItem)
+                    {
+                        contentList.prepend(curItem->text(0));
+                        curItem = curItem->parent();
+                    }
+
+                    selectedFilterItem->appendContent(contentList.join(" -> "));
+                }
+                else if(item->checkState(0) == Qt::Unchecked)
+                {
+                    QTreeWidgetItem* curItem = item;
+                    QStringList contentList;
+                    selectedFilterItem->removeFilter(filter);
+
+                    while(curItem)
+                    {
+                        contentList.prepend(curItem->text(0));
+                        curItem = curItem->parent();
+                    }
+
+                    selectedFilterItem->removeContent(contentList.join(" -> "));
+                }
+            }
+        }
+
         ui->contentsTreeWidget->viewport()->update();
     }
 }

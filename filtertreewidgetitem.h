@@ -13,16 +13,26 @@ public:
     void setName(const QString& name) {m_Name = name;}
     QString getName() {return m_Name;}
 
+    void setIconName(const QString& iconName) {m_IconName = iconName;}
+    QString getIconName() {return m_IconName;}
+
     void setFilters(const QStringList& filters) {m_Filters = filters;}
     QStringList getFilters() {return m_Filters;}
-
     void appendFilter(const QString& filter) {m_Filters.append(filter);}
     void removeFilter(const QString& filter) {m_Filters.removeAll(filter);}
     void clearFilters() {m_Filters.clear();}
 
+    void setContents(const QStringList& contents) {m_Contents = contents;}
+    QStringList getContents() {return m_Contents;}
+    void appendContent(const QString& content) {m_Contents.append(content);}
+    void removeContent(const QString& content) {m_Contents.removeAll(content);}
+    void clearContents() {m_Contents.clear();}
+
 private:
     QString m_Name;
+    QString m_IconName;
     QStringList m_Filters;
+    QStringList m_Contents;
 
 };
 
