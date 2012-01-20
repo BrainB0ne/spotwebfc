@@ -49,11 +49,14 @@ void MainWidget::connectSignalsSlots()
             this, SLOT(slotFiltersTreeWidgetContextMenu(const QPoint&)));
     connect(ui->filtersTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
             this, SLOT(slotFiltersTreeWidgetItemDoubleClicked(QTreeWidgetItem*)));
+    connect(ui->filtersTreeWidget, SIGNAL(itemSelectionChanged()),
+            this, SLOT(slotFiltersTreeWidgetItemSelectionChanged()));
 }
 
 void MainWidget::initialize()
 {
     m_pCurrentFilterItem = 0;
+    m_pPreviousFilterItem = 0;
 
     QList<int> sizeList;
     sizeList << 1 << 1;
@@ -274,50 +277,10 @@ void MainWidget::slotClearAllToolButtonClicked()
     ui->contentsTreeWidget->viewport()->update();
 }
 
-void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem* item)
+void MainWidget::slotContentsTreeWidgetItemChanged(QTreeWidgetItem *item)
 {
     if(item)
     {
-        QList<QTreeWidgetItem*> selItems = ui->filtersTreeWidget->selectedItems();
-
-        if(selItems.count() == 1)
-        {
-            FilterTreeWidgetItem* selectedFilterItem = (FilterTreeWidgetItem*)(selItems.at(0));
-            QString filter = item->text(CONTENTS_COLUMN_FILTER);
-
-            if(!filter.isEmpty())
-            {
-                if(item->checkState(CONTENTS_COLUMN_TYPE) == Qt::Checked)
-                {
-                    QTreeWidgetItem* curItem = item;
-                    QStringList contentList;
-                    selectedFilterItem->appendFilter(filter);
-
-                    while(curItem)
-                    {
-                        contentList.prepend(curItem->text(CONTENTS_COLUMN_TYPE));
-                        curItem = curItem->parent();
-                    }
-
-                    selectedFilterItem->appendContent(contentList.join(" -> "));
-                }
-                else if(item->checkState(CONTENTS_COLUMN_TYPE) == Qt::Unchecked)
-                {
-                    QTreeWidgetItem* curItem = item;
-                    QStringList contentList;
-                    selectedFilterItem->removeFilter(filter);
-
-                    while(curItem)
-                    {
-                        contentList.prepend(curItem->text(CONTENTS_COLUMN_TYPE));
-                        curItem = curItem->parent();
-                    }
-
-                    selectedFilterItem->removeContent(contentList.join(" -> "));
-                }
-            }
-        }
-
         ui->contentsTreeWidget->viewport()->update();
     }
 }
@@ -367,6 +330,7 @@ void MainWidget::slotShowFilterProperties()
 
     if(filterPropDlg)
     {
+        updateFilterItem(m_pCurrentFilterItem);
         filterPropDlg->setFilterItem(m_pCurrentFilterItem);
         filterPropDlg->initialize();
 
@@ -375,6 +339,82 @@ void MainWidget::slotShowFilterProperties()
             // TODO: save properties to item
         }
     }
+}
 
-    m_pCurrentFilterItem = 0;
+void MainWidget::slotFiltersTreeWidgetItemSelectionChanged()
+{
+    QList<QTreeWidgetItem*> selItems = ui->filtersTreeWidget->selectedItems();
+    if(selItems.count() == 1)
+    {
+        updateFilterItem(m_pPreviousFilterItem);
+        m_pCurrentFilterItem = (FilterTreeWidgetItem*)(selItems.at(0));
+        updateContentsTree(m_pCurrentFilterItem);
+        m_pPreviousFilterItem = m_pCurrentFilterItem;
+    }
+}
+
+void MainWidget::updateFilterItem(FilterTreeWidgetItem* selectedFilterItem)
+{
+    if(selectedFilterItem)
+    {
+        QTreeWidgetItemIterator it(ui->contentsTreeWidget, QTreeWidgetItemIterator::Checked);
+
+        selectedFilterItem->clearFilters();
+        selectedFilterItem->clearContents();
+
+        while (*it)
+        {
+            QString filter = (*it)->text(CONTENTS_COLUMN_FILTER);
+
+            if(!filter.isEmpty())
+            {
+                if((*it)->checkState(CONTENTS_COLUMN_TYPE) == Qt::Checked)
+                {
+                    QTreeWidgetItem* curItem = (*it);
+                    QStringList contentList;
+                    selectedFilterItem->appendFilter(filter);
+
+                    while(curItem)
+                    {
+                        contentList.prepend(curItem->text(CONTENTS_COLUMN_TYPE));
+                        curItem = curItem->parent();
+                    }
+
+                    selectedFilterItem->appendContent(contentList.join(" -> "));
+                }
+            }
+
+            ++it;
+        }
+    }
+}
+
+void MainWidget::updateContentsTree(FilterTreeWidgetItem *selectedFilterItem)
+{
+    slotClearAllToolButtonClicked();
+
+    if(selectedFilterItem)
+    {
+        QStringList filtersList = selectedFilterItem->getFilters();
+        QStringList::iterator it = filtersList.begin(),
+                              itEnd = filtersList.end();
+
+        while(it != itEnd)
+        {
+            QString filter = (*it);
+            QTreeWidgetItemIterator itItem(ui->contentsTreeWidget, QTreeWidgetItemIterator::All);
+
+            while(*itItem)
+            {
+                if((*itItem)->text(CONTENTS_COLUMN_FILTER) == filter)
+                {
+                    (*itItem)->setCheckState(CONTENTS_COLUMN_TYPE, Qt::Checked);
+                }
+
+                ++itItem;
+            }
+
+            ++it;
+        }
+    }
 }

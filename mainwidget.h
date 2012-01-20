@@ -24,6 +24,8 @@ public:
     void initialize();
     void connectSignalsSlots();
     void loadContents();
+    void updateFilterItem(FilterTreeWidgetItem *selectedFilterItem);
+    void updateContentsTree(FilterTreeWidgetItem *selectedFilterItem);
 
 private slots:
     void slotOpenButtonClicked();
@@ -40,12 +42,14 @@ private slots:
 
     void slotFiltersTreeWidgetContextMenu(const QPoint& pos);
     void slotFiltersTreeWidgetItemDoubleClicked(QTreeWidgetItem* item);
+    void slotFiltersTreeWidgetItemSelectionChanged();
     void slotShowFilterProperties();
 
 private:
     Ui::MainWidget *ui;
 
     FilterTreeWidgetItem* m_pCurrentFilterItem;
+    FilterTreeWidgetItem* m_pPreviousFilterItem;
 };
 
 #endif // MAINWIDGET_H
