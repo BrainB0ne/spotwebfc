@@ -263,6 +263,12 @@ void MainWidget::slotRemoveToolButtonClicked()
         delete (*it);
         ++it;
     }
+
+    if(ui->filtersTreeWidget->topLevelItemCount() == 0)
+    {
+        slotClearAllToolButtonClicked();
+        m_pPreviousFilterItem = 0;
+    }
 }
 
 void MainWidget::slotClearAllToolButtonClicked()
