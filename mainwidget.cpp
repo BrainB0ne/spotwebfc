@@ -428,12 +428,23 @@ void MainWidget::filtersTreeEmptyCheck()
 {
     if(ui->filtersTreeWidget->topLevelItemCount() == 0)
     {
-        ui->contentsTreeWidget->setEnabled(false);
         slotClearAllToolButtonClicked();
         m_pPreviousFilterItem = 0;
+
+        ui->contentsTreeWidget->clearSelection();
+        ui->contentsTreeWidget->clearFocus();
+        ui->contentsTreeWidget->setEnabled(false);
+        ui->removeToolButton->setEnabled(false);
+        ui->clearAllToolButton->setEnabled(false);
+        ui->saveButton->setEnabled(false);
+        ui->saveAsButton->setEnabled(false);
     }
     else if(ui->filtersTreeWidget->topLevelItemCount() > 0)
     {
         ui->contentsTreeWidget->setEnabled(true);
+        ui->removeToolButton->setEnabled(true);
+        ui->clearAllToolButton->setEnabled(true);
+        ui->saveButton->setEnabled(true);
+        ui->saveAsButton->setEnabled(true);
     }
 }
