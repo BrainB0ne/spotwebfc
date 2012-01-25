@@ -64,6 +64,7 @@ void MainWidget::initialize()
 
     ui->filtersTreeWidget->setRootIsDecorated(false);
 
+    filtersTreeEmptyCheck();
     loadContents();
 }
 
@@ -245,6 +246,8 @@ void MainWidget::slotAddToolButtonClicked()
             ui->filtersTreeWidget->setCurrentItem(filterItem);
             filterItem->setSelected(true);
             ui->filtersTreeWidget->setFocus();
+
+            filtersTreeEmptyCheck();
         }
 
         delete newFilterDlg;
@@ -264,11 +267,7 @@ void MainWidget::slotRemoveToolButtonClicked()
         ++it;
     }
 
-    if(ui->filtersTreeWidget->topLevelItemCount() == 0)
-    {
-        slotClearAllToolButtonClicked();
-        m_pPreviousFilterItem = 0;
-    }
+    filtersTreeEmptyCheck();
 }
 
 void MainWidget::slotClearAllToolButtonClicked()
@@ -422,5 +421,19 @@ void MainWidget::updateContentsTree(FilterTreeWidgetItem *selectedFilterItem)
 
             ++it;
         }
+    }
+}
+
+void MainWidget::filtersTreeEmptyCheck()
+{
+    if(ui->filtersTreeWidget->topLevelItemCount() == 0)
+    {
+        ui->contentsTreeWidget->setEnabled(false);
+        slotClearAllToolButtonClicked();
+        m_pPreviousFilterItem = 0;
+    }
+    else if(ui->filtersTreeWidget->topLevelItemCount() > 0)
+    {
+        ui->contentsTreeWidget->setEnabled(true);
     }
 }

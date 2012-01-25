@@ -26,6 +26,7 @@ public:
     void loadContents();
     void updateFilterItem(FilterTreeWidgetItem *selectedFilterItem);
     void updateContentsTree(FilterTreeWidgetItem *selectedFilterItem);
+    void filtersTreeEmptyCheck();
 
 private slots:
     void slotOpenButtonClicked();
