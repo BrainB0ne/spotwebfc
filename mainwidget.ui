@@ -82,6 +82,9 @@
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
          <column>
           <property name="text">
            <string>Name</string>
@@ -143,6 +146,9 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="0" colspan="2">
         <widget class="QTreeWidget" name="contentsTreeWidget">
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
          <column>
           <property name="text">
            <string>Type</string>
