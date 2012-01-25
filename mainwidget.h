@@ -27,6 +27,7 @@ public:
     void updateFilterItem(FilterTreeWidgetItem *selectedFilterItem);
     void updateContentsTree(FilterTreeWidgetItem *selectedFilterItem);
     void filtersTreeEmptyCheck();
+    void saveFilterFile(const QString& fileName);
 
 private slots:
     void slotOpenButtonClicked();

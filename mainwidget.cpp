@@ -6,6 +6,7 @@
 #include "filterpropertiesdialog.h"
 #include "filtertreewidgetitem.h"
 
+#include <QtCore/QTextStream>
 #include <QtGui/QFileDialog>
 #include <QtGui/QMessageBox>
 #include <QtGui/QMenu>
@@ -174,6 +175,9 @@ void MainWidget::slotOpenButtonClicked()
     if(!fileName.isEmpty())
     {
         ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+
+        ui->filtersTreeWidget->clear();
+        slotClearAllToolButtonClicked();
     }
 }
 
@@ -188,17 +192,70 @@ void MainWidget::slotSaveButtonClicked()
         if(!fileName.isEmpty())
         {
             ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
-            //TODO: save filters to file from File Save Dialog
 
+            saveFilterFile(ui->fileLineEdit->text());
             QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(QDir::convertSeparators(fileName)));
         }
     }
     else
     {
-        //TODO: save filters to file specified in fileLineEdit
-
+        saveFilterFile(ui->fileLineEdit->text());
         QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
     }
+}
+
+void MainWidget::saveFilterFile(const QString& fileName)
+{
+    QDomDocument doc("spotwebfilters");
+    QDomElement root = doc.createElement("spotwebfilter");
+    doc.appendChild(root);
+
+    QDomElement versionElement = doc.createElement("version");
+    root.appendChild(versionElement);
+
+    QDomText t = doc.createTextNode("1.0");
+    versionElement.appendChild(t);
+
+    QDomElement generatorElement = doc.createElement("generator");
+    root.appendChild(generatorElement);
+
+    t = doc.createTextNode("spotwebfc");
+    generatorElement.appendChild(t);
+
+    QDomElement filtersElement = doc.createElement("filters");
+    root.appendChild(filtersElement);
+
+    FilterTreeWidgetItem* item = 0;
+    QDomElement filterElement, titleElement;
+
+    QTreeWidgetItemIterator it(ui->filtersTreeWidget, QTreeWidgetItemIterator::All);
+    while (*it)
+    {
+        item = (FilterTreeWidgetItem*)(*it);
+        filterElement = doc.createElement("filter");
+        filtersElement.appendChild(filterElement);
+
+        titleElement = doc.createElement("title");
+        filterElement.appendChild(titleElement);
+
+        t = doc.createTextNode(item->getName());
+        titleElement.appendChild(t);
+
+        // TODO: Save other elements
+
+        ++it;
+    }
+
+    QString xml = doc.toString();
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    QTextStream out(&file);
+    out << xml << "\n";
+
+    file.close();
 }
 
 void MainWidget::slotSaveAsButtonClicked()
