@@ -10,6 +10,7 @@
 #include <QtGui/QFileDialog>
 #include <QtGui/QMessageBox>
 #include <QtGui/QMenu>
+#include <QtGui/QCloseEvent>
 #include <QtXml/QDomDocument>
 
 #define CONTENTS_FILE "spotwebfc.xml"
@@ -27,6 +28,72 @@ MainWidget::MainWidget(QWidget *parent) :
 MainWidget::~MainWidget()
 {
     delete ui;
+}
+
+void MainWidget::closeEvent(QCloseEvent *event)
+{
+    int reply = QMessageBox::warning(this, tr("Spotweb Filter Creator"),
+                                   tr("Spotweb Filter Creator is closing, unsaved changes will be lost!\n"
+                                      "Do you want to save your filters?"),
+                                   QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
+                                   QMessageBox::Save);
+    if (reply == QMessageBox::Save)
+    {
+        // save filters and close the application.
+        if(ui->fileLineEdit->text().isEmpty())
+        {
+            QString fileName = QFileDialog::getSaveFileName(this, tr("Save Spotweb Filter File"),
+                                       qApp->applicationDirPath() + "/myfilters.xml",
+                                       tr("Spotweb Filter Files (*.xml)"));
+
+            if(!fileName.isEmpty())
+            {
+                if(saveFilterFile(fileName) == 0)
+                {
+                    ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+                    QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
+                    event->accept();
+                }
+                else
+                {
+                    QMessageBox::critical(this, "Spotweb Filters save failed", QString("Spotweb Filters could not be saved to:\n%1").arg(QDir::convertSeparators(fileName)));
+                    event->ignore();
+                }
+            }
+            else
+            {
+                event->ignore();
+            }
+        }
+        else
+        {
+            if(saveFilterFile(ui->fileLineEdit->text()) == 0)
+            {
+                QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
+                event->accept();
+            }
+            else
+            {
+                QMessageBox::critical(this, "Spotweb Filters save failed", QString("Spotweb Filters could not be saved to:\n%1").arg(QDir::convertSeparators(ui->fileLineEdit->text())));
+                event->ignore();
+            }
+        }
+    }
+    else if(reply == QMessageBox::Discard)
+    {
+        // just close the application.
+        event->accept();
+    }
+    else if(reply == QMessageBox::Cancel)
+    {
+        // don't close the application.
+        event->ignore();
+    }
+    else
+    {
+        // don't close the application.
+        event->ignore();
+    }
 }
 
 void MainWidget::connectSignalsSlots()
@@ -195,21 +262,34 @@ void MainWidget::slotSaveButtonClicked()
 
         if(!fileName.isEmpty())
         {
-            ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
-
-            saveFilterFile(ui->fileLineEdit->text());
-            QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(QDir::convertSeparators(fileName)));
+            if(saveFilterFile(fileName) == 0)
+            {
+                ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+                QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
+            }
+            else
+            {
+                QMessageBox::critical(this, "Spotweb Filters save failed", QString("Spotweb Filters could not be saved to:\n%1").arg(QDir::convertSeparators(fileName)));
+            }
         }
     }
     else
     {
-        saveFilterFile(ui->fileLineEdit->text());
-        QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
+        if(saveFilterFile(ui->fileLineEdit->text()) == 0)
+        {
+            QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Spotweb Filters save failed", QString("Spotweb Filters could not be saved to:\n%1").arg(QDir::convertSeparators(ui->fileLineEdit->text())));
+        }
     }
 }
 
-void MainWidget::saveFilterFile(const QString& fileName)
+int MainWidget::saveFilterFile(const QString& fileName)
 {
+    updateFilterItem(m_pCurrentFilterItem);
+
     QDomDocument doc("spotwebfilters");
     QDomElement root = doc.createElement("spotwebfilter");
     doc.appendChild(root);
@@ -230,14 +310,23 @@ void MainWidget::saveFilterFile(const QString& fileName)
     root.appendChild(filtersElement);
 
     FilterTreeWidgetItem* item = 0;
-    QDomElement filterElement, titleElement;
+    QDomElement filterElement, idElement, titleElement, iconElement, parentElement, orderElement, treeElement, itemElement;
+    QStringList filtersList;
+    QString filter;
+    QStringList::iterator it, itEnd;
 
-    QTreeWidgetItemIterator it(ui->filtersTreeWidget, QTreeWidgetItemIterator::All);
-    while (*it)
+    QTreeWidgetItemIterator itItem(ui->filtersTreeWidget, QTreeWidgetItemIterator::All);
+    while (*itItem)
     {
-        item = (FilterTreeWidgetItem*)(*it);
+        item = (FilterTreeWidgetItem*)(*itItem);
         filterElement = doc.createElement("filter");
         filtersElement.appendChild(filterElement);
+
+        idElement = doc.createElement("id");
+        filterElement.appendChild(idElement);
+
+        t = doc.createTextNode("");
+        idElement.appendChild(t);
 
         titleElement = doc.createElement("title");
         filterElement.appendChild(titleElement);
@@ -245,21 +334,61 @@ void MainWidget::saveFilterFile(const QString& fileName)
         t = doc.createTextNode(item->getName());
         titleElement.appendChild(t);
 
-        // TODO: Save other elements
+        iconElement = doc.createElement("icon");
+        filterElement.appendChild(iconElement);
 
-        ++it;
+        t = doc.createTextNode(item->getIconName());
+        iconElement.appendChild(t);
+
+        parentElement = doc.createElement("parent");
+        filterElement.appendChild(parentElement);
+
+        t = doc.createTextNode("");
+        parentElement.appendChild(t);
+
+        orderElement = doc.createElement("order");
+        filterElement.appendChild(orderElement);
+
+        t = doc.createTextNode("");
+        orderElement.appendChild(t);
+
+        treeElement = doc.createElement("tree");
+        filterElement.appendChild(treeElement);
+
+        filtersList = item->getFilters();
+
+        it = filtersList.begin();
+        itEnd = filtersList.end();
+
+        while(it != itEnd)
+        {
+            filter = (*it);
+
+            itemElement = doc.createElement("item");
+            itemElement.setAttribute("type", "include");
+            treeElement.appendChild(itemElement);
+
+            t = doc.createTextNode(filter);
+            itemElement.appendChild(t);
+
+            ++it;
+        }
+
+        ++itItem;
     }
 
     QString xml = doc.toString();
 
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-        return;
+        return 1;
 
     QTextStream out(&file);
     out << xml << "\n";
 
     file.close();
+
+    return 0;
 }
 
 void MainWidget::slotSaveAsButtonClicked()
@@ -270,10 +399,15 @@ void MainWidget::slotSaveAsButtonClicked()
 
     if(!fileName.isEmpty())
     {
-        ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
-        //TODO: save filters to file from File Save Dialog
-
-        QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(QDir::convertSeparators(fileName)));
+        if(saveFilterFile(fileName) == 0)
+        {
+            ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+            QMessageBox::information(this, "Spotweb Filters saved", QString("Spotweb Filters saved to:\n%1").arg(ui->fileLineEdit->text()));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Spotweb Filters save failed", QString("Spotweb Filters could not be saved to:\n%1").arg(QDir::convertSeparators(fileName)));
+        }
     }
 }
 
