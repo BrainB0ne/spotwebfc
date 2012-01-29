@@ -15,6 +15,15 @@ public:
     void setName(const QString& name) {m_Name = name;}
     QString getName() {return m_Name;}
 
+    void setID(const QString& id) {m_ID = id;}
+    QString getID() {return m_ID;}
+
+    void setParentID(const QString& parentID) {m_ParentID = parentID;}
+    QString getParentID() {return m_ParentID;}
+
+    void setOrder(const QString& order) {m_Order = order;}
+    QString getOrder() {return m_Order;}
+
     void setIconName(const QString& iconName) {m_IconName = iconName;}
     QString getIconName() {return m_IconName;}
 
@@ -32,6 +41,9 @@ public:
 
 private:
     QString m_Name;
+    QString m_ID;
+    QString m_Order;
+    QString m_ParentID;
     QString m_IconName;
     QStringList m_Filters;
     QStringList m_Contents;
