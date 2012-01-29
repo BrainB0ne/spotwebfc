@@ -262,6 +262,8 @@ void MainWidget::slotOpenButtonClicked()
                                                     tr("Spotweb Filter Files (*.xml)"));
     if(!fileName.isEmpty())
     {
+        QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
         ui->filtersTreeWidget->clearSelection();
         ui->filtersTreeWidget->clear();
 
@@ -272,6 +274,7 @@ void MainWidget::slotOpenButtonClicked()
         QFile file(fileName);
         if (!file.open(QIODevice::ReadOnly))
         {
+            QApplication::restoreOverrideCursor();
             QMessageBox::critical(this, "Error",
                                   QString("Spotweb Filter file: %1 could not be opened").arg(QDir::convertSeparators(fileName)));
             return;
@@ -279,6 +282,8 @@ void MainWidget::slotOpenButtonClicked()
 
         if (!doc.setContent(&file))
         {
+            QApplication::restoreOverrideCursor();
+
             file.close();
             QMessageBox::critical(this, "Internal Error",
                                   QString("Spotweb Filter data could not be read correctly"));
@@ -389,6 +394,8 @@ void MainWidget::slotOpenButtonClicked()
         ui->filtersTreeWidget->setFocus();
         filtersTreeEmptyCheck();
     }
+
+    QApplication::restoreOverrideCursor();
 }
 
 void MainWidget::slotSaveButtonClicked()
@@ -484,6 +491,8 @@ void MainWidget::createFilterIdentification()
 
 int MainWidget::saveFilterFile(const QString& fileName)
 {
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
     updateFilterItem(m_pCurrentFilterItem);
     createFilterIdentification();
 
@@ -586,13 +595,17 @@ int MainWidget::saveFilterFile(const QString& fileName)
 
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QApplication::restoreOverrideCursor();
         return 1;
+    }
 
     QTextStream out(&file);
     out << xml << "\n";
 
     file.close();
 
+    QApplication::restoreOverrideCursor();
     return 0;
 }
 
