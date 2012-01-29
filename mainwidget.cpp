@@ -276,7 +276,8 @@ void MainWidget::slotOpenButtonClicked()
         {
             QApplication::restoreOverrideCursor();
             QMessageBox::critical(this, "Error",
-                                  QString("Spotweb Filter file: %1 could not be opened").arg(QDir::convertSeparators(fileName)));
+                                  QString("Spotweb Filter file: %1 could not be opened")
+                                  .arg(QDir::convertSeparators(fileName)));
             return;
         }
 
@@ -302,7 +303,7 @@ void MainWidget::slotOpenButtonClicked()
         QDomNode n = docElem.firstChild();
         while(!n.isNull())
         {
-            QDomElement e = n.toElement(); // try to convert the node to an element.
+            QDomElement e = n.toElement();
             if(!e.isNull())
             {
                 if(e.tagName() == "version")
@@ -326,7 +327,7 @@ void MainWidget::slotOpenButtonClicked()
                             QDomNode n1 = eFilter.firstChild();
                             while(!n1.isNull())
                             {
-                                QDomElement e1 = n1.toElement(); // try to convert the node to an element.
+                                QDomElement e1 = n1.toElement();
                                 if(!e1.isNull())
                                 {
                                     if(e1.tagName() == "id")
@@ -356,7 +357,7 @@ void MainWidget::slotOpenButtonClicked()
                                         QDomNode nItem = e1.firstChild();
                                         while(!nItem.isNull())
                                         {
-                                            QDomElement eItem = nItem.toElement(); // try to convert the node to an element.
+                                            QDomElement eItem = nItem.toElement();
                                             if(!eItem.isNull())
                                             {
                                                 if(eItem.tagName() == "item")
