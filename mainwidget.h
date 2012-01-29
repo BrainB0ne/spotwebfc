@@ -26,6 +26,7 @@ public:
     void loadContents();
     void updateFilterItem(FilterTreeWidgetItem *selectedFilterItem);
     void updateContentsTree(FilterTreeWidgetItem *selectedFilterItem);
+    void createFilterIdentification();
     void filtersTreeEmptyCheck();
     int  saveFilterFile(const QString& fileName);
 

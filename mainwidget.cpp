@@ -305,9 +305,59 @@ void MainWidget::slotSaveButtonClicked()
     }
 }
 
+void MainWidget::createFilterIdentification()
+{
+    FilterTreeWidgetItem* item = 0;
+    QTreeWidgetItemIterator itItem(ui->filtersTreeWidget, QTreeWidgetItemIterator::All);
+
+    while (*itItem)
+    {
+        item = (FilterTreeWidgetItem*)(*itItem);
+
+        int id = 0;
+        FilterTreeWidgetItem* curItem = item;
+        QString strID;
+
+        while (curItem)
+        {
+            if(curItem->parent())
+            {
+                id = curItem->parent()->indexOfChild(curItem);
+            }
+            else
+            {
+                id = ui->filtersTreeWidget->indexOfTopLevelItem(curItem);
+            }
+
+            strID.prepend(QString::number(id+1));
+            curItem = (FilterTreeWidgetItem*)curItem->parent();
+        }
+
+        // set the ID of the item
+        item->setID(strID);
+
+        // set order to the same value as ID
+        item->setOrder(item->getID());
+
+        if(item->parent())
+        {
+            // set parentID of the item to the ID of the parent item
+            item->setParentID(((FilterTreeWidgetItem*)(item->parent()))->getID());
+        }
+        else
+        {
+            // top level item gets parentID of "0"
+            item->setParentID("0");
+        }
+
+        ++itItem;
+    }
+}
+
 int MainWidget::saveFilterFile(const QString& fileName)
 {
     updateFilterItem(m_pCurrentFilterItem);
+    createFilterIdentification();
 
     QDomDocument doc("spotwebfilters");
     QDomElement root = doc.createElement("spotwebfilter");
@@ -352,7 +402,7 @@ int MainWidget::saveFilterFile(const QString& fileName)
         idElement = doc.createElement("id");
         filterElement.appendChild(idElement);
 
-        t = doc.createTextNode("");
+        t = doc.createTextNode(item->getID());
         idElement.appendChild(t);
 
         titleElement = doc.createElement("title");
@@ -370,13 +420,13 @@ int MainWidget::saveFilterFile(const QString& fileName)
         parentElement = doc.createElement("parent");
         filterElement.appendChild(parentElement);
 
-        t = doc.createTextNode("");
+        t = doc.createTextNode(item->getParentID());
         parentElement.appendChild(t);
 
         orderElement = doc.createElement("order");
         filterElement.appendChild(orderElement);
 
-        t = doc.createTextNode("");
+        t = doc.createTextNode(item->getOrder());
         orderElement.appendChild(t);
 
         treeElement = doc.createElement("tree");
