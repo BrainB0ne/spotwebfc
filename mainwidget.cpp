@@ -32,6 +32,12 @@ MainWidget::~MainWidget()
 
 void MainWidget::closeEvent(QCloseEvent *event)
 {
+    if(ui->filtersTreeWidget->topLevelItemCount() == 0 && ui->fileLineEdit->text().isEmpty())
+    {
+        event->accept();
+        return;
+    }
+
     int reply = QMessageBox::warning(this, tr("Spotweb Filter Creator"),
                                    tr("Spotweb Filter Creator is closing, unsaved changes will be lost!\n"
                                       "Do you want to save your changes?"),
@@ -167,7 +173,7 @@ void MainWidget::loadContents()
     {
         file.close();
         QMessageBox::critical(this, "Internal Error",
-                              QString("Contents data could not be read correctly").arg(CONTENTS_FILE));
+                              QString("Contents data could not be read correctly"));
         return;
     }
 
@@ -256,10 +262,132 @@ void MainWidget::slotOpenButtonClicked()
                                                     tr("Spotweb Filter Files (*.xml)"));
     if(!fileName.isEmpty())
     {
-        ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
-
+        ui->filtersTreeWidget->clearSelection();
         ui->filtersTreeWidget->clear();
-        slotClearAllToolButtonClicked();
+
+        filtersTreeEmptyCheck();
+
+        QDomDocument doc("spotwebfilters");
+
+        QFile file(fileName);
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            QMessageBox::critical(this, "Error",
+                                  QString("Spotweb Filter file: %1 could not be opened").arg(QDir::convertSeparators(fileName)));
+            return;
+        }
+
+        if (!doc.setContent(&file))
+        {
+            file.close();
+            QMessageBox::critical(this, "Internal Error",
+                                  QString("Spotweb Filter data could not be read correctly"));
+            return;
+        }
+
+        file.close();
+
+        QDomElement docElem = doc.documentElement();
+
+        FilterTreeWidgetItem* filterItem = 0;
+
+        QString version;
+        QString generator;
+
+        QDomNode n = docElem.firstChild();
+        while(!n.isNull())
+        {
+            QDomElement e = n.toElement(); // try to convert the node to an element.
+            if(!e.isNull())
+            {
+                if(e.tagName() == "version")
+                {
+                    version = e.text();
+                }
+                else if(e.tagName() == "generator")
+                {
+                    generator = e.text();
+                }
+                else if(e.tagName() == "filters")
+                {
+                    QDomNode nFilter = e.firstChild();
+                    while (!nFilter.isNull())
+                    {
+                        QDomElement eFilter = nFilter.toElement();
+                        if(!eFilter.isNull())
+                        {
+                            filterItem = new FilterTreeWidgetItem(ui->filtersTreeWidget);
+
+                            QDomNode n1 = eFilter.firstChild();
+                            while(!n1.isNull())
+                            {
+                                QDomElement e1 = n1.toElement(); // try to convert the node to an element.
+                                if(!e1.isNull())
+                                {
+                                    if(e1.tagName() == "id")
+                                    {
+                                        filterItem->setID(e1.text());
+                                    }
+                                    else if(e1.tagName() == "title")
+                                    {
+                                        filterItem->setName(e1.text());
+                                        filterItem->setText(FILTER_COLUMN_NAME, e1.text());
+                                    }
+                                    else if(e1.tagName() == "icon")
+                                    {
+                                        filterItem->setIconName(e1.text());
+                                        filterItem->setIcon(FILTER_COLUMN_NAME, QIcon(QString(":/images/%1.png").arg(e1.text())));
+                                    }
+                                    else if(e1.tagName() == "parent")
+                                    {
+                                        filterItem->setParentID(e1.text());
+                                    }
+                                    else if(e1.tagName() == "order")
+                                    {
+                                        filterItem->setOrder(e1.text());
+                                    }
+                                    else if(e1.tagName() == "tree")
+                                    {
+                                        QDomNode nItem = e1.firstChild();
+                                        while(!nItem.isNull())
+                                        {
+                                            QDomElement eItem = nItem.toElement(); // try to convert the node to an element.
+                                            if(!eItem.isNull())
+                                            {
+                                                if(eItem.tagName() == "item")
+                                                {
+                                                    if(eItem.attribute("type") == "include")
+                                                    {
+                                                        filterItem->appendFilter(eItem.text());
+                                                        filterItem->appendContent(findContentsByFilter(eItem.text()));
+                                                    }
+                                                }
+                                            }
+
+                                            nItem = nItem.nextSibling();
+                                        }
+                                    }
+                                }
+
+                                n1 = n1.nextSibling();
+                            }
+
+                            ui->filtersTreeWidget->setCurrentItem(filterItem);
+                            filterItem->setSelected(true);
+                            m_pCurrentFilterItem = filterItem;
+                        }
+
+                        nFilter = nFilter.nextSibling();
+                    }
+                }
+            }
+
+            n = n.nextSibling();
+        }
+
+        ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
+        ui->filtersTreeWidget->setFocus();
+        filtersTreeEmptyCheck();
     }
 }
 
@@ -632,6 +760,32 @@ void MainWidget::slotFiltersTreeWidgetItemSelectionChanged()
         updateContentsTree(m_pCurrentFilterItem);
         m_pPreviousFilterItem = m_pCurrentFilterItem;
     }
+}
+
+QString MainWidget::findContentsByFilter(const QString& filter)
+{
+    QTreeWidgetItemIterator it(ui->contentsTreeWidget, QTreeWidgetItemIterator::All);
+
+    while (*it)
+    {
+        if((*it)->text(CONTENTS_COLUMN_FILTER) == filter)
+        {
+            QTreeWidgetItem* curItem = (*it);
+            QStringList contentList;
+
+            while(curItem)
+            {
+                contentList.prepend(curItem->text(CONTENTS_COLUMN_TYPE));
+                curItem = curItem->parent();
+            }
+
+            return contentList.join(" -> ");
+        }
+
+        ++it;
+    }
+
+    return QString("");
 }
 
 void MainWidget::updateFilterItem(FilterTreeWidgetItem* selectedFilterItem)
