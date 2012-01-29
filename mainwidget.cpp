@@ -63,7 +63,11 @@ void MainWidget::initialize()
     sizeList << 1 << 1;
     ui->splitter->setSizes(sizeList);
 
-    ui->filtersTreeWidget->setRootIsDecorated(false);
+    ui->filtersTreeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->filtersTreeWidget->setDragEnabled(true);
+    ui->filtersTreeWidget->viewport()->setAcceptDrops(true);
+    ui->filtersTreeWidget->setDropIndicatorShown(true);
+    ui->filtersTreeWidget->setDragDropMode(QAbstractItemView::InternalMove);
 
     filtersTreeEmptyCheck();
     loadContents();
