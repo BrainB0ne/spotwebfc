@@ -297,6 +297,7 @@ void MainWidget::slotOpenButtonClicked()
         QDomElement docElem = doc.documentElement();
 
         FilterTreeWidgetItem* filterItem = 0;
+        FilterTreeWidgetItem* parentFilterItem = 0;
 
         QString version;
         QString generator;
@@ -320,12 +321,41 @@ void MainWidget::slotOpenButtonClicked()
                     QDomNode nFilter = e.firstChild();
                     while (!nFilter.isNull())
                     {
+                        parentFilterItem = 0;
+
                         QDomElement eFilter = nFilter.toElement();
                         if(!eFilter.isNull())
                         {
-                            filterItem = new FilterTreeWidgetItem(ui->filtersTreeWidget);
-
                             QDomNode n1 = eFilter.firstChild();
+                            while(!n1.isNull())
+                            {
+                                QDomElement e1 = n1.toElement();
+                                if(!e1.isNull())
+                                {
+                                    if(e1.tagName() == "parent")
+                                    {
+                                        QString parentID = e1.text();
+
+                                        if(parentID != "0")
+                                        {
+                                            parentFilterItem = findFilterItemByParentID(parentID);
+                                        }
+                                    }
+                                }
+
+                                n1 = n1.nextSibling();
+                            }
+
+                            if(parentFilterItem)
+                            {
+                                filterItem = new FilterTreeWidgetItem(parentFilterItem);
+                            }
+                            else
+                            {
+                                filterItem = new FilterTreeWidgetItem(ui->filtersTreeWidget);
+                            }
+
+                            n1 = eFilter.firstChild();
                             while(!n1.isNull())
                             {
                                 QDomElement e1 = n1.toElement();
@@ -402,6 +432,27 @@ void MainWidget::slotOpenButtonClicked()
     }
 
     QApplication::restoreOverrideCursor();
+}
+
+FilterTreeWidgetItem* MainWidget::findFilterItemByParentID(const QString& parentID)
+{
+    FilterTreeWidgetItem* parentItem = 0;
+    QTreeWidgetItemIterator itItem(ui->filtersTreeWidget);
+
+    while (*itItem)
+    {
+        parentItem = (FilterTreeWidgetItem*)(*itItem);
+
+        if( parentItem->getID() == parentID )
+        {
+            return parentItem;
+        }
+
+        ++itItem;
+    }
+
+    parentItem = 0;
+    return parentItem;
 }
 
 void MainWidget::slotSaveButtonClicked()
@@ -686,7 +737,20 @@ void MainWidget::slotRemoveToolButtonClicked()
 
     while(it != itEnd)
     {
-        delete (*it);
+        QTreeWidgetItem *parent = (*it)->parent();
+        int index;
+
+        if (parent)
+        {
+            index = parent->indexOfChild(*it);
+            delete parent->takeChild(index);
+        }
+        else
+        {
+            index = ui->filtersTreeWidget->indexOfTopLevelItem(*it);
+            delete ui->filtersTreeWidget->takeTopLevelItem(index);
+        }
+
         ++it;
     }
 
@@ -843,7 +907,7 @@ void MainWidget::updateFilterItem(FilterTreeWidgetItem* selectedFilterItem)
     }
 }
 
-void MainWidget::updateContentsTree(FilterTreeWidgetItem *selectedFilterItem)
+void MainWidget::updateContentsTree(FilterTreeWidgetItem* selectedFilterItem)
 {
     slotClearAllToolButtonClicked();
 

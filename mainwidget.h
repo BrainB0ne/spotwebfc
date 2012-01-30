@@ -24,15 +24,16 @@ public:
     void initialize();
     void connectSignalsSlots();
     void loadContents();
-    void updateFilterItem(FilterTreeWidgetItem *selectedFilterItem);
-    void updateContentsTree(FilterTreeWidgetItem *selectedFilterItem);
+    void updateFilterItem(FilterTreeWidgetItem* selectedFilterItem);
+    void updateContentsTree(FilterTreeWidgetItem* selectedFilterItem);
     QString findContentByFilter(const QString& filter);
     void createFilterIdentification();
     void filtersTreeEmptyCheck();
     int  saveFilterFile(const QString& fileName);
+    FilterTreeWidgetItem* findFilterItemByParentID(const QString& parentID);
 
 protected:
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent* event);
 
 private slots:
     void slotOpenButtonClicked();
