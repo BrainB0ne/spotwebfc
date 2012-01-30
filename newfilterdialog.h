@@ -17,6 +17,8 @@ public:
     ~NewFilterDialog();
 
     QString getName() {return m_Name;}
+    QString getIconName() {return m_IconName;}
+    QIcon getIcon() {return m_Icon;}
 
 private slots:
     void accept();
@@ -25,6 +27,8 @@ private:
     Ui::NewFilterDialog *ui;
 
     QString m_Name;
+    QString m_IconName;
+    QIcon m_Icon;
 };
 
 #endif // NEWFILTERDIALOG_H

@@ -267,7 +267,8 @@ void MainWidget::slotOpenButtonClicked()
         ui->filtersTreeWidget->clearSelection();
         ui->filtersTreeWidget->clear();
 
-        filtersTreeEmptyCheck();
+        slotClearAllToolButtonClicked();
+        m_pPreviousFilterItem = 0;
 
         QDomDocument doc("spotwebfilters");
 
@@ -365,7 +366,7 @@ void MainWidget::slotOpenButtonClicked()
                                                     if(eItem.attribute("type") == "include")
                                                     {
                                                         filterItem->appendFilter(eItem.text());
-                                                        filterItem->appendContent(findContentsByFilter(eItem.text()));
+                                                        filterItem->appendContent(findContentByFilter(eItem.text()));
                                                     }
                                                 }
                                             }
@@ -377,10 +378,6 @@ void MainWidget::slotOpenButtonClicked()
 
                                 n1 = n1.nextSibling();
                             }
-
-                            ui->filtersTreeWidget->setCurrentItem(filterItem);
-                            filterItem->setSelected(true);
-                            m_pCurrentFilterItem = filterItem;
                         }
 
                         nFilter = nFilter.nextSibling();
@@ -389,6 +386,14 @@ void MainWidget::slotOpenButtonClicked()
             }
 
             n = n.nextSibling();
+        }
+
+        FilterTreeWidgetItem* firstFilterItem = (FilterTreeWidgetItem*)(ui->filtersTreeWidget->topLevelItem(0));
+        if(firstFilterItem)
+        {
+            ui->filtersTreeWidget->setCurrentItem(firstFilterItem);
+            firstFilterItem->setSelected(true);
+            m_pCurrentFilterItem = firstFilterItem;
         }
 
         ui->fileLineEdit->setText(QDir::convertSeparators(fileName));
@@ -657,8 +662,8 @@ void MainWidget::slotAddToolButtonClicked()
             FilterTreeWidgetItem* filterItem = new FilterTreeWidgetItem(ui->filtersTreeWidget);
             filterItem->setName(newFilterDlg->getName());
             filterItem->setText(FILTER_COLUMN_NAME, newFilterDlg->getName());
-            filterItem->setIconName("custom");
-            filterItem->setIcon(FILTER_COLUMN_NAME, QIcon(":/images/custom.png"));
+            filterItem->setIconName(newFilterDlg->getIconName());
+            filterItem->setIcon(FILTER_COLUMN_NAME, newFilterDlg->getIcon());
 
             ui->filtersTreeWidget->clearSelection();
             ui->filtersTreeWidget->setCurrentItem(filterItem);
@@ -776,7 +781,7 @@ void MainWidget::slotFiltersTreeWidgetItemSelectionChanged()
     }
 }
 
-QString MainWidget::findContentsByFilter(const QString& filter)
+QString MainWidget::findContentByFilter(const QString& filter)
 {
     QTreeWidgetItemIterator it(ui->contentsTreeWidget, QTreeWidgetItemIterator::All);
 
