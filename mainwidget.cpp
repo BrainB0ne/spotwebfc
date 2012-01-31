@@ -19,6 +19,7 @@
 
 #include "aboutdialog.h"
 #include "newfilterdialog.h"
+#include "settingsdialog.h"
 #include "filterpropertiesdialog.h"
 #include "filtertreewidgetitem.h"
 
@@ -132,6 +133,7 @@ void MainWidget::connectSignalsSlots()
     connect(ui->openButton,         SIGNAL(clicked()), this, SLOT(slotOpenButtonClicked()));
     connect(ui->saveButton,         SIGNAL(clicked()), this, SLOT(slotSaveButtonClicked()));
     connect(ui->saveAsButton,       SIGNAL(clicked()), this, SLOT(slotSaveAsButtonClicked()));
+    connect(ui->settingsButton,     SIGNAL(clicked()), this, SLOT(slotSettingsButtonClicked()));
     connect(ui->aboutButton,        SIGNAL(clicked()), this, SLOT(slotAboutButtonClicked()));
     connect(ui->addToolButton,      SIGNAL(clicked()), this, SLOT(slotAddToolButtonClicked()));
     connect(ui->removeToolButton,   SIGNAL(clicked()), this, SLOT(slotRemoveToolButtonClicked()));
@@ -702,6 +704,21 @@ void MainWidget::slotSaveAsButtonClicked()
             QMessageBox::critical(this, "Spotweb Filters save failed",
                                   QString("Spotweb Filters could not be saved to:\n%1")
                                   .arg(QDir::convertSeparators(fileName)));
+        }
+    }
+}
+
+void MainWidget::slotSettingsButtonClicked()
+{
+    SettingsDialog* settingsDlg = new SettingsDialog(this);
+
+    if(settingsDlg)
+    {
+        settingsDlg->initialize();
+
+        if(settingsDlg->exec() == QDialog::Accepted)
+        {
+            QString language = settingsDlg->getLanguage();
         }
     }
 }

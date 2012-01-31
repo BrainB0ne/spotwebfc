@@ -60,18 +60,21 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     filtertreewidgetitem.cpp \
     newfilterdialog.cpp \
-    filterpropertiesdialog.cpp
+    filterpropertiesdialog.cpp \
+    settingsdialog.cpp
 
 HEADERS  += mainwidget.h \
     aboutdialog.h \
     filtertreewidgetitem.h \
     newfilterdialog.h \
-    filterpropertiesdialog.h
+    filterpropertiesdialog.h \
+    settingsdialog.h
 
 FORMS    += mainwidget.ui \
     aboutdialog.ui \
     newfilterdialog.ui \
-    filterpropertiesdialog.ui
+    filterpropertiesdialog.ui \
+    settingsdialog.ui
 
 OTHER_FILES += \
     images/remove.png \
@@ -119,7 +122,12 @@ OTHER_FILES += \
     images/today.png \
     images/fav.png \
     images/download.png \
-    images/help.png
+    images/help.png \
+    images/settings.png \
+    spotwebfc_nl.ts
 
 RESOURCES += \
     spotwebfc.qrc
+
+TRANSLATIONS += \
+    spotwebfc_nl.ts

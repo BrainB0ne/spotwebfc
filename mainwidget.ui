@@ -70,7 +70,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="5">
+   <item row="1" column="0" colspan="6">
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -199,14 +199,25 @@
      </widget>
     </widget>
    </item>
-   <item row="0" column="4">
+   <item row="0" column="5">
     <widget class="QPushButton" name="aboutButton">
      <property name="text">
-      <string>A&amp;bout...</string>
+      <string>A&amp;bout</string>
      </property>
      <property name="icon">
       <iconset resource="spotwebfc.qrc">
        <normaloff>:/images/about.png</normaloff>:/images/about.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QPushButton" name="settingsButton">
+     <property name="text">
+      <string>Se&amp;ttings</string>
+     </property>
+     <property name="icon">
+      <iconset resource="spotwebfc.qrc">
+       <normaloff>:/images/settings.png</normaloff>:/images/settings.png</iconset>
      </property>
     </widget>
    </item>
