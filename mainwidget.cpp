@@ -56,7 +56,7 @@ void MainWidget::installTranslation()
 
     if(m_pSettings)
     {
-        QString strLanguage = m_pSettings->value("Settings/Language", QString("")).toString();
+        QString strLanguage = m_pSettings->value("Settings/Language", QString("English")).toString();
         m_pTranslator = new QTranslator();
 
         if(strLanguage == "Nederlands")
@@ -737,11 +737,7 @@ void MainWidget::slotSettingsButtonClicked()
 
     if(settingsDlg)
     {
-        QString strLanguage = m_pSettings->value("Settings/Language", QString("")).toString();
-        if(strLanguage.isEmpty())
-        {
-            strLanguage = "English";
-        }
+        QString strLanguage = m_pSettings->value("Settings/Language", QString("English")).toString();
 
         settingsDlg->setLanguage(strLanguage);
         settingsDlg->initialize();
