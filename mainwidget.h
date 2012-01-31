@@ -19,6 +19,8 @@
 
 #include <QWidget>
 #include <QTreeWidgetItem>
+#include <QSettings>
+#include <QTranslator>
 
 #define CONTENTS_COLUMN_TYPE   0
 #define CONTENTS_COLUMN_FILTER 1
@@ -37,6 +39,7 @@ public:
     explicit MainWidget(QWidget *parent = 0);
     ~MainWidget();
     
+    void installTranslation();
     void initialize();
     void connectSignalsSlots();
     void loadContents();
@@ -75,6 +78,9 @@ private:
 
     FilterTreeWidgetItem* m_pCurrentFilterItem;
     FilterTreeWidgetItem* m_pPreviousFilterItem;
+
+    QSettings* m_pSettings;
+    QTranslator* m_pTranslator;
 };
 
 #endif // MAINWIDGET_H

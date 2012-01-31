@@ -36,6 +36,8 @@ MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWidget)
 {
+    installTranslation();
+
     ui->setupUi(this);
 
     initialize();
@@ -45,6 +47,27 @@ MainWidget::MainWidget(QWidget *parent) :
 MainWidget::~MainWidget()
 {
     delete ui;
+}
+
+void MainWidget::installTranslation()
+{
+    QString strPath = QApplication::applicationDirPath();
+    m_pSettings = new QSettings(strPath + QString("/spotwebfc.ini"), QSettings::IniFormat, this);
+
+    if(m_pSettings)
+    {
+        QString strLanguage = m_pSettings->value("Settings/Language", QString("")).toString();
+        m_pTranslator = new QTranslator();
+
+        if(strLanguage == "Nederlands")
+        {
+            if(m_pTranslator)
+            {
+                m_pTranslator->load("spotwebfc_nl");
+                qApp->installTranslator(m_pTranslator);
+            }
+        }
+    }
 }
 
 void MainWidget::closeEvent(QCloseEvent *event)
@@ -714,11 +737,14 @@ void MainWidget::slotSettingsButtonClicked()
 
     if(settingsDlg)
     {
+        QString strLanguage = m_pSettings->value("Settings/Language", QString("")).toString();
+        settingsDlg->setLanguage(strLanguage);
         settingsDlg->initialize();
 
         if(settingsDlg->exec() == QDialog::Accepted)
         {
             QString language = settingsDlg->getLanguage();
+            m_pSettings->setValue("Settings/Language", language);
         }
     }
 }
