@@ -738,6 +738,11 @@ void MainWidget::slotSettingsButtonClicked()
     if(settingsDlg)
     {
         QString strLanguage = m_pSettings->value("Settings/Language", QString("")).toString();
+        if(strLanguage.isEmpty())
+        {
+            strLanguage = "English";
+        }
+
         settingsDlg->setLanguage(strLanguage);
         settingsDlg->initialize();
 
