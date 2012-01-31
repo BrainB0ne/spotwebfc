@@ -37,6 +37,7 @@ void SettingsDialog::initialize()
     languages << "English" << "Nederlands";
 
     ui->languageComboBox->insertItems(0, languages);
+    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findText(m_Language));
 }
 
 void SettingsDialog::accept()
