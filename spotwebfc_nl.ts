@@ -40,8 +40,19 @@ INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND
 FITNESS FOR A PARTICULAR PURPOSE.</source>
         <translation>Het programma is aangeboden ZONDER ENIGE VORM VAN 
 GARANTIE, INCLUSIEF DE GARANTIE VAN DESIGN, 
-VERKOOPBAARHEID EN GESCHIKTHEID VOOR
- EEN BEPAALD DOEL.</translation>
+VERKOOPBAARHEID EN GESCHIKTHEID VOOR 
+EEN BEPAALD DOEL.</translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="26"/>
+        <source>Build Date: %1 - %2</source>
+        <translation>Build Datum: %1 - %2</translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="27"/>
+        <source>Version: %1</source>
+        <oldsource>Version: 0.1.0</oldsource>
+        <translation>Versie: %1</translation>
     </message>
 </context>
 <context>
@@ -81,7 +92,7 @@ VERKOOPBAARHEID EN GESCHIKTHEID VOOR
     <name>MainWidget</name>
     <message>
         <location filename="mainwidget.ui" line="14"/>
-        <location filename="mainwidget.cpp" line="58"/>
+        <location filename="mainwidget.cpp" line="81"/>
         <source>Spotweb Filter Creator</source>
         <translation>Spotweb Filter Creator</translation>
     </message>
@@ -171,48 +182,48 @@ VERKOOPBAARHEID EN GESCHIKTHEID VOOR
         <translation>&amp;Instellingen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="59"/>
+        <location filename="mainwidget.cpp" line="82"/>
         <source>Spotweb Filter Creator is closing, unsaved changes will be lost!
 Do you want to save your changes?</source>
         <translation>Spotweb Filter Creator gaat sluiten, niet bewaarde wijzigingen zullen verloren gaan!
 Wilt u uw wijzigingen opslaan?</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="69"/>
-        <location filename="mainwidget.cpp" line="480"/>
+        <location filename="mainwidget.cpp" line="92"/>
+        <location filename="mainwidget.cpp" line="503"/>
         <source>Save Spotweb Filter File</source>
         <translation>Spotweb Filter bestand  opslaan</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="71"/>
-        <location filename="mainwidget.cpp" line="280"/>
-        <location filename="mainwidget.cpp" line="482"/>
-        <location filename="mainwidget.cpp" line="691"/>
+        <location filename="mainwidget.cpp" line="94"/>
+        <location filename="mainwidget.cpp" line="303"/>
+        <location filename="mainwidget.cpp" line="505"/>
+        <location filename="mainwidget.cpp" line="714"/>
         <source>Spotweb Filter Files (*.xml)</source>
         <translation>Spotweb Filter Bestanden (*.xml)</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="278"/>
+        <location filename="mainwidget.cpp" line="301"/>
         <source>Open Spotweb Filter File</source>
         <translation>Spotweb Filter bestand openen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="689"/>
+        <location filename="mainwidget.cpp" line="712"/>
         <source>Save Spotweb Filter File As</source>
         <translation>Spotweb Filter bestand opslaan als</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="832"/>
+        <location filename="mainwidget.cpp" line="859"/>
         <source>&amp;Add</source>
         <translation>&amp;Toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="836"/>
+        <location filename="mainwidget.cpp" line="863"/>
         <source>&amp;Remove</source>
         <translation>&amp;Verwijderen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="837"/>
+        <location filename="mainwidget.cpp" line="864"/>
         <source>&amp;Properties</source>
         <translation>&amp;Eigenschappen</translation>
     </message>
@@ -258,12 +269,12 @@ Wilt u uw wijzigingen opslaan?</translation>
         <translation>Taal</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="46"/>
+        <location filename="settingsdialog.cpp" line="47"/>
         <source>Language changed</source>
         <translation>Taal is veranderd</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="47"/>
+        <location filename="settingsdialog.cpp" line="48"/>
         <source>Please restart Spotweb Filter Creator to activate the new language</source>
         <translation>Herstart Spotweb Filter Creator om uw gekozen taal te activeren</translation>
     </message>
