@@ -69,8 +69,7 @@ section "install"
 	
     # Files added here should be removed by the uninstaller (see section "uninstall")
 	file "spotwebfc.exe"
-    file "spotwebfc.ini"
-    file "spotwebfc.xml"
+    file "spotwebfc.cxml"
     file "QtCore4.dll"
     file "QtGui4.dll"
     file "QtXml4.dll"
@@ -112,7 +111,7 @@ function un.onInit
 	SetShellVarContext all
  
 	#Verify the uninstaller - last chance to back out
-	MessageBox MB_OKCANCEL "Permanantly remove ${APPNAME}?" IDOK next
+	MessageBox MB_OKCANCEL "Permanently remove ${APPNAME}?" IDOK next
 		Abort
 	next:
 	!insertmacro VerifyUserIsAdmin
@@ -127,8 +126,7 @@ section "uninstall"
  
 	# Remove files
 	delete $INSTDIR\spotwebfc.exe
-    delete $INSTDIR\spotwebfc.ini
-    delete $INSTDIR\spotwebfc.xml
+    delete $INSTDIR\spotwebfc.cxml
     delete $INSTDIR\QtCore4.dll
     delete $INSTDIR\QtGui4.dll
     delete $INSTDIR\QtXml4.dll
