@@ -52,7 +52,7 @@ MainWidget::~MainWidget()
 void MainWidget::installTranslation()
 {
     QString strPath = QApplication::applicationDirPath();
-    m_pSettings = new QSettings(strPath + QString("/spotwebfc.ini"), QSettings::IniFormat, this);
+    m_pSettings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "Spotweb Filter Creator", "spotwebfc", this);
 
     if(m_pSettings)
     {
