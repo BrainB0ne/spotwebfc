@@ -51,7 +51,7 @@ debug {
 }
 
 win32 {
-QMAKE_POST_LINK += xcopy /Y $${TARGET}.xml $${OUTPUT_DIR}
+QMAKE_POST_LINK += xcopy /Y $${TARGET}.cxml $${OUTPUT_DIR}
 RC_FILE = spotwebfc.rc
 }
 
@@ -86,7 +86,7 @@ OTHER_FILES += \
     images/filesaveas.png \
     images/filesave.png \
     images/fileload.png \
-    spotwebfc.xml \
+    spotwebfc.cxml \
     images/about.png \
     images/picture.png \
     images/music.png \

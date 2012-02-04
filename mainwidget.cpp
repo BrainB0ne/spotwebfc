@@ -30,7 +30,7 @@
 #include <QtGui/QCloseEvent>
 #include <QtXml/QDomDocument>
 
-#define CONTENTS_FILE "spotwebfc.xml"
+#define CONTENTS_FILE "spotwebfc.cxml"
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
