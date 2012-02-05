@@ -43,5 +43,6 @@
         <file>images/help.png</file>
         <file>images/download.png</file>
         <file>images/settings.png</file>
+        <file>gpl-3.0.txt</file>
     </qresource>
 </RCC>
