@@ -11,7 +11,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# For more information about the GNU General Public License: <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 #-------------------------------------------------
@@ -61,20 +62,23 @@ SOURCES += main.cpp\
     filtertreewidgetitem.cpp \
     newfilterdialog.cpp \
     filterpropertiesdialog.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    licensedialog.cpp
 
 HEADERS  += mainwidget.h \
     aboutdialog.h \
     filtertreewidgetitem.h \
     newfilterdialog.h \
     filterpropertiesdialog.h \
-    settingsdialog.h
+    settingsdialog.h \
+    licensedialog.h
 
 FORMS    += mainwidget.ui \
     aboutdialog.ui \
     newfilterdialog.ui \
     filterpropertiesdialog.ui \
-    settingsdialog.ui
+    settingsdialog.ui \
+    licensedialog.ui
 
 OTHER_FILES += \
     images/remove.png \
@@ -124,7 +128,8 @@ OTHER_FILES += \
     images/download.png \
     images/help.png \
     images/settings.png \
-    spotwebfc_nl.ts
+    spotwebfc_nl.ts \
+    gpl-3.0.txt
 
 RESOURCES += \
     spotwebfc.qrc
