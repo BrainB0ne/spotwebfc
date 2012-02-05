@@ -33,7 +33,7 @@
     <normaloff>:/images/about.png</normaloff>:/images/about.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="0" column="0" colspan="3">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Information</string>
@@ -98,6 +98,26 @@ FITNESS FOR A PARTICULAR PURPOSE.</string>
     </widget>
    </item>
    <item row="1" column="0">
+    <widget class="QPushButton" name="licenseButton">
+     <property name="text">
+      <string>&amp;License</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>298</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

@@ -11,13 +11,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * For more information about the GNU General Public License: <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
 #include <QDialog>
+
+class LicenseDialog;
 
 namespace Ui {
 class AboutDialog;
@@ -31,8 +34,13 @@ public:
     explicit AboutDialog(QWidget *parent = 0);
     ~AboutDialog();
     
+private slots:
+    void slotLicenseButtonClicked();
+
 private:
     Ui::AboutDialog *ui;
+
+    LicenseDialog* m_pLicenseDlg;
 };
 
 #endif // ABOUTDIALOG_H
