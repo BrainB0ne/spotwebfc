@@ -44,12 +44,17 @@ VERKOOPBAARHEID EN GESCHIKTHEID VOOR
 EEN BEPAALD DOEL.</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="26"/>
+        <location filename="aboutdialog.ui" line="103"/>
+        <source>&amp;License</source>
+        <translation>&amp;Licentie</translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="31"/>
         <source>Build Date: %1 - %2</source>
         <translation>Build Datum: %1 - %2</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="27"/>
+        <location filename="aboutdialog.cpp" line="32"/>
         <source>Version: %1</source>
         <oldsource>Version: 0.1.0</oldsource>
         <translation>Versie: %1</translation>
@@ -78,21 +83,29 @@ EEN BEPAALD DOEL.</translation>
         <translation>Icoon:</translation>
     </message>
     <message>
-        <location filename="filterpropertiesdialog.cpp" line="96"/>
+        <location filename="filterpropertiesdialog.cpp" line="97"/>
         <source>Warning</source>
         <translation>Waarschuwing</translation>
     </message>
     <message>
-        <location filename="filterpropertiesdialog.cpp" line="96"/>
+        <location filename="filterpropertiesdialog.cpp" line="97"/>
         <source>Filter Name can&apos;t be empty!</source>
         <translation>Filter Naam kan niet leeg gelaten worden!</translation>
+    </message>
+</context>
+<context>
+    <name>LicenseDialog</name>
+    <message>
+        <location filename="licensedialog.ui" line="17"/>
+        <source>License</source>
+        <translation>Licentie</translation>
     </message>
 </context>
 <context>
     <name>MainWidget</name>
     <message>
         <location filename="mainwidget.ui" line="14"/>
-        <location filename="mainwidget.cpp" line="81"/>
+        <location filename="mainwidget.cpp" line="82"/>
         <source>Spotweb Filter Creator</source>
         <translation>Spotweb Filter Creator</translation>
     </message>
@@ -182,48 +195,48 @@ EEN BEPAALD DOEL.</translation>
         <translation>&amp;Instellingen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="82"/>
+        <location filename="mainwidget.cpp" line="83"/>
         <source>Spotweb Filter Creator is closing, unsaved changes will be lost!
 Do you want to save your changes?</source>
         <translation>Spotweb Filter Creator gaat sluiten, niet bewaarde wijzigingen zullen verloren gaan!
 Wilt u uw wijzigingen opslaan?</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="92"/>
-        <location filename="mainwidget.cpp" line="503"/>
+        <location filename="mainwidget.cpp" line="93"/>
+        <location filename="mainwidget.cpp" line="504"/>
         <source>Save Spotweb Filter File</source>
         <translation>Spotweb Filter bestand  opslaan</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="94"/>
-        <location filename="mainwidget.cpp" line="303"/>
-        <location filename="mainwidget.cpp" line="505"/>
-        <location filename="mainwidget.cpp" line="714"/>
+        <location filename="mainwidget.cpp" line="95"/>
+        <location filename="mainwidget.cpp" line="304"/>
+        <location filename="mainwidget.cpp" line="506"/>
+        <location filename="mainwidget.cpp" line="715"/>
         <source>Spotweb Filter Files (*.xml)</source>
         <translation>Spotweb Filter Bestanden (*.xml)</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="301"/>
+        <location filename="mainwidget.cpp" line="302"/>
         <source>Open Spotweb Filter File</source>
         <translation>Spotweb Filter bestand openen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="712"/>
+        <location filename="mainwidget.cpp" line="713"/>
         <source>Save Spotweb Filter File As</source>
         <translation>Spotweb Filter bestand opslaan als</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="859"/>
+        <location filename="mainwidget.cpp" line="860"/>
         <source>&amp;Add</source>
         <translation>&amp;Toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="863"/>
+        <location filename="mainwidget.cpp" line="864"/>
         <source>&amp;Remove</source>
         <translation>&amp;Verwijderen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="864"/>
+        <location filename="mainwidget.cpp" line="865"/>
         <source>&amp;Properties</source>
         <translation>&amp;Eigenschappen</translation>
     </message>
@@ -246,12 +259,12 @@ Wilt u uw wijzigingen opslaan?</translation>
         <translation>Icoon:</translation>
     </message>
     <message>
-        <location filename="newfilterdialog.cpp" line="80"/>
+        <location filename="newfilterdialog.cpp" line="81"/>
         <source>Warning</source>
         <translation>Waarschuwing</translation>
     </message>
     <message>
-        <location filename="newfilterdialog.cpp" line="80"/>
+        <location filename="newfilterdialog.cpp" line="81"/>
         <source>Filter Name can&apos;t be empty!</source>
         <translation>Filter Naam kan niet leeg gelaten worden!</translation>
     </message>
@@ -269,12 +282,12 @@ Wilt u uw wijzigingen opslaan?</translation>
         <translation>Taal</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="47"/>
+        <location filename="settingsdialog.cpp" line="48"/>
         <source>Language changed</source>
         <translation>Taal is veranderd</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="48"/>
+        <location filename="settingsdialog.cpp" line="49"/>
         <source>Please restart Spotweb Filter Creator to activate the new language</source>
         <translation>Herstart Spotweb Filter Creator om uw gekozen taal te activeren</translation>
     </message>
