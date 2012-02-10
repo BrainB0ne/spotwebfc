@@ -50,6 +50,26 @@ MainWidget::~MainWidget()
     delete ui;
 }
 
+void MainWidget::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        // retranslate designer form (single inheritance approach)
+        ui->retranslateUi(this);
+
+        // retranslate other widgets which weren't added in designer
+        retranslate();
+    }
+
+    // remember to call base class implementation
+    QWidget::changeEvent(event);
+}
+
+void MainWidget::retranslate()
+{
+    // retranslate other widgets which weren't added in designer
+}
+
 void MainWidget::installTranslation()
 {
     QString strPath = QApplication::applicationDirPath();

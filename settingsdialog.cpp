@@ -18,6 +18,8 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 
+#include "mainwidget.h"
+
 #include <QMessageBox>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
@@ -25,6 +27,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+
+    m_pMainWidget = (MainWidget*)parent;
+
+    connect(ui->languageComboBox, SIGNAL(activated(QString)),
+            this, SLOT(slotLanguageComboBoxActivated(QString)));
 }
 
 SettingsDialog::~SettingsDialog()
@@ -41,15 +48,69 @@ void SettingsDialog::initialize()
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findText(m_Language));
 }
 
-void SettingsDialog::accept()
+void SettingsDialog::changeEvent(QEvent* event)
 {
-    if(m_Language != ui->languageComboBox->currentText())
+    if (event->type() == QEvent::LanguageChange)
     {
-        QMessageBox::information(this, tr("Language changed"),
-                                 tr("Please restart Spotweb Filter Creator to activate the new language"));
+        // retranslate designer form (single inheritance approach)
+        ui->retranslateUi(this);
+
+        // retranslate other widgets which weren't added in designer
+        retranslate();
     }
 
+    // remember to call base class implementation
+    QDialog::changeEvent(event);
+}
+
+void SettingsDialog::retranslate()
+{
+    // retranslate other widgets which weren't added in designer
+}
+
+void SettingsDialog::accept()
+{
     m_Language = ui->languageComboBox->currentText();
 
     QDialog::accept();
+}
+
+void SettingsDialog::reject()
+{
+    QTranslator* translator = m_pMainWidget->getTranslator();
+
+    if(m_pMainWidget && translator)
+    {
+        if(m_Language == "Nederlands")
+        {
+            translator->load("spotwebfc_nl");
+            qApp->installTranslator(translator);
+        }
+        else if(m_Language == "English")
+        {
+            translator->load("");
+            qApp->installTranslator(translator);
+        }
+    }
+
+    QDialog::reject();
+}
+
+void SettingsDialog::slotLanguageComboBoxActivated(const QString& language)
+{
+    QTranslator* translator = m_pMainWidget->getTranslator();
+
+    if(m_pMainWidget && translator)
+    {
+        if(language == "Nederlands")
+        {
+            translator->load("spotwebfc_nl");
+            qApp->installTranslator(translator);
+        }
+        else if(language == "English")
+        {
+            translator->load("");
+            qApp->installTranslator(translator);
+        }
+    }
 }

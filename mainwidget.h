@@ -41,6 +41,7 @@ public:
     ~MainWidget();
     
     void installTranslation();
+    void retranslate();
     void initialize();
     void connectSignalsSlots();
     void loadContents();
@@ -51,9 +52,11 @@ public:
     void filtersTreeEmptyCheck();
     int  saveFilterFile(const QString& fileName);
     FilterTreeWidgetItem* findFilterItemByParentID(const QString& parentID);
+    QTranslator* getTranslator() {return m_pTranslator;}
 
 protected:
     void closeEvent(QCloseEvent* event);
+    void changeEvent(QEvent* event);
 
 private slots:
     void slotOpenButtonClicked();

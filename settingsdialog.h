@@ -20,6 +20,8 @@
 
 #include <QDialog>
 
+class MainWidget;
+
 namespace Ui {
 class SettingsDialog;
 }
@@ -33,17 +35,24 @@ public:
     ~SettingsDialog();
 
     void initialize();
+    void retranslate();
 
     void setLanguage(const QString& language) {m_Language = language;}
     QString getLanguage() {return m_Language;}
     
+protected:
+    void changeEvent(QEvent* event);
+
 private slots:
     void accept();
+    void reject();
+    void slotLanguageComboBoxActivated(const QString& language);
 
 private:
     Ui::SettingsDialog *ui;
 
     QString m_Language;
+    MainWidget* m_pMainWidget;
 };
 
 #endif // SETTINGSDIALOG_H
