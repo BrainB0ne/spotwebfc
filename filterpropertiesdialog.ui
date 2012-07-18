@@ -14,24 +14,27 @@
    <string>Filter Properties</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="nameLabel">
+   <item row="1" column="1">
+    <widget class="QComboBox" name="iconComboBox"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="posterLabel">
      <property name="text">
-      <string>Name:</string>
+      <string>Poster:</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="nameLineEdit"/>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="posterLineEdit"/>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="contentsLabel">
+   <item row="2" column="0">
+    <widget class="QLabel" name="tagLabel">
      <property name="text">
-      <string>Contents:</string>
+      <string>Tag:</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1" rowspan="2">
+   <item row="5" column="1" rowspan="2">
     <widget class="QListWidget" name="contentsListWidget">
      <property name="uniformItemSizes">
       <bool>true</bool>
@@ -41,7 +44,31 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="0" column="0">
+    <widget class="QLabel" name="nameLabel">
+     <property name="text">
+      <string>Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="iconLabel">
+     <property name="text">
+      <string>Icon:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="contentsLabel">
+     <property name="text">
+      <string>Contents:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="tagLineEdit"/>
+   </item>
+   <item row="6" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -54,17 +81,7 @@
      </property>
     </spacer>
    </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="iconLabel">
-     <property name="text">
-      <string>Icon:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QComboBox" name="iconComboBox"/>
-   </item>
-   <item row="4" column="0" colspan="2">
+   <item row="10" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -74,8 +91,27 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="nameLineEdit"/>
+   </item>
+   <item row="4" column="1">
+    <widget class="QCheckBox" name="enableNotifyCheckBox">
+     <property name="text">
+      <string>Enable Notify</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>nameLineEdit</tabstop>
+  <tabstop>iconComboBox</tabstop>
+  <tabstop>tagLineEdit</tabstop>
+  <tabstop>posterLineEdit</tabstop>
+  <tabstop>enableNotifyCheckBox</tabstop>
+  <tabstop>contentsListWidget</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

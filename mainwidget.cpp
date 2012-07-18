@@ -437,6 +437,10 @@ void MainWidget::slotOpenButtonClicked()
                                         filterItem->setIconName(e1.text());
                                         filterItem->setIcon(FILTER_COLUMN_NAME, QIcon(QString(":/images/%1.png").arg(e1.text())));
                                     }
+                                    else if(e1.tagName() == "enablenotify")
+                                    {
+                                        filterItem->setEnableNotify(e1.text());
+                                    }
                                     else if(e1.tagName() == "parent")
                                     {
                                         filterItem->setParentID(e1.text());
@@ -459,6 +463,53 @@ void MainWidget::slotOpenButtonClicked()
                                                     {
                                                         filterItem->appendFilter(eItem.text());
                                                         filterItem->appendContent(findContentByFilter(eItem.text()));
+                                                    }
+                                                }
+                                            }
+
+                                            nItem = nItem.nextSibling();
+                                        }
+                                    }
+                                    else if(e1.tagName() == "values")
+                                    {
+                                        // load Tag and Poster values
+                                        QDomNode nItem = e1.firstChild();
+                                        while(!nItem.isNull())
+                                        {
+                                            QDomElement eItem = nItem.toElement();
+                                            if(!eItem.isNull())
+                                            {
+                                                if(eItem.tagName() == "item")
+                                                {
+                                                    QString strFieldName = "";
+                                                    QString strItemValue = "";
+
+                                                    QDomNode nItemSpec = eItem.firstChild();
+                                                    while(!nItemSpec.isNull())
+                                                    {
+                                                        QDomElement eItemSpec = nItemSpec.toElement();
+                                                        if(!eItemSpec.isNull())
+                                                        {
+                                                            if(eItemSpec.tagName() == "fieldname")
+                                                            {
+                                                                strFieldName = eItemSpec.text();
+                                                            }
+                                                            else if(eItemSpec.tagName() == "value")
+                                                            {
+                                                                strItemValue = eItemSpec.text();
+                                                            }
+                                                        }
+
+                                                        nItemSpec = nItemSpec.nextSibling();
+                                                    }
+
+                                                    if(strFieldName == "Tag")
+                                                    {
+                                                        filterItem->setTag(strItemValue);
+                                                    }
+                                                    else if(strFieldName == "Poster")
+                                                    {
+                                                        filterItem->setPoster(strItemValue);
                                                     }
                                                 }
                                             }
@@ -641,8 +692,14 @@ int MainWidget::saveFilterFile(const QString& fileName)
                 iconElement,
                 parentElement,
                 orderElement,
+                enablenotifyElement,
                 treeElement,
-                itemElement;
+                itemElement,
+                valuesElement,
+                valueItemElement,
+                fieldnameElement,
+                operatorElement,
+                valueElement;
 
     QStringList filtersList;
     QString filter;
@@ -685,6 +742,12 @@ int MainWidget::saveFilterFile(const QString& fileName)
         t = doc.createTextNode(item->getOrder());
         orderElement.appendChild(t);
 
+        enablenotifyElement = doc.createElement("enablenotify");
+        filterElement.appendChild(enablenotifyElement);
+
+        t = doc.createTextNode(item->getEnableNotify());
+        enablenotifyElement.appendChild(t);
+
         treeElement = doc.createElement("tree");
         filterElement.appendChild(treeElement);
 
@@ -705,6 +768,59 @@ int MainWidget::saveFilterFile(const QString& fileName)
             itemElement.appendChild(t);
 
             ++it;
+        }
+
+        valuesElement = doc.createElement("values");
+        filterElement.appendChild(valuesElement);
+
+        // item for Tag field
+        if(!item->getTag().isEmpty())
+        {
+            valueItemElement = doc.createElement("item");
+            valuesElement.appendChild(valueItemElement);
+
+            fieldnameElement = doc.createElement("fieldname");
+            valueItemElement.appendChild(fieldnameElement);
+
+            t = doc.createTextNode("Tag");
+            fieldnameElement.appendChild(t);
+
+            operatorElement = doc.createElement("operator");
+            valueItemElement.appendChild(operatorElement);
+
+            t = doc.createTextNode("=");
+            operatorElement.appendChild(t);
+
+            valueElement = doc.createElement("value");
+            valueItemElement.appendChild(valueElement);
+
+            t = doc.createTextNode(item->getTag());
+            valueElement.appendChild(t);
+        }
+
+        // item for Poster field
+        if(!item->getPoster().isEmpty())
+        {
+            valueItemElement = doc.createElement("item");
+            valuesElement.appendChild(valueItemElement);
+
+            fieldnameElement = doc.createElement("fieldname");
+            valueItemElement.appendChild(fieldnameElement);
+
+            t = doc.createTextNode("Poster");
+            fieldnameElement.appendChild(t);
+
+            operatorElement = doc.createElement("operator");
+            valueItemElement.appendChild(operatorElement);
+
+            t = doc.createTextNode("=");
+            operatorElement.appendChild(t);
+
+            valueElement = doc.createElement("value");
+            valueItemElement.appendChild(valueElement);
+
+            t = doc.createTextNode(item->getPoster());
+            valueElement.appendChild(t);
         }
 
         ++itItem;

@@ -74,8 +74,13 @@ void FilterPropertiesDialog::initialize()
     {
         ui->nameLineEdit->setText(m_pFilterItem->getName());
         ui->iconComboBox->setCurrentIndex(ui->iconComboBox->findText(m_pFilterItem->getIconName()));
+        ui->enableNotifyCheckBox->setChecked(m_pFilterItem->getEnableNotify() == "1" ? true : false);
+        ui->tagLineEdit->setText(m_pFilterItem->getTag());
+        ui->posterLineEdit->setText(m_pFilterItem->getPoster());
         ui->contentsListWidget->insertItems(0, m_pFilterItem->getContents());
     }
+
+    ui->nameLineEdit->setFocus();
 }
 
 void FilterPropertiesDialog::accept()
@@ -88,6 +93,9 @@ void FilterPropertiesDialog::accept()
             m_pFilterItem->setText(FILTER_COLUMN_NAME, ui->nameLineEdit->text());
             m_pFilterItem->setIconName(ui->iconComboBox->currentText());
             m_pFilterItem->setIcon(FILTER_COLUMN_NAME, ui->iconComboBox->itemIcon(ui->iconComboBox->currentIndex()));
+            m_pFilterItem->setEnableNotify(ui->enableNotifyCheckBox->isChecked() ? "1" : "0");
+            m_pFilterItem->setTag(ui->tagLineEdit->text());
+            m_pFilterItem->setPoster(ui->posterLineEdit->text());
         }
 
         QDialog::accept();

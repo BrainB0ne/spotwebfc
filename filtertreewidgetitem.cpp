@@ -20,7 +20,7 @@
 FilterTreeWidgetItem::FilterTreeWidgetItem(QTreeWidget * parent, int type)
     :QTreeWidgetItem(parent, type)
 {
-
+    m_EnableNotify = "0";
 }
 FilterTreeWidgetItem::FilterTreeWidgetItem(QTreeWidgetItem * parent, int type)
     :QTreeWidgetItem(parent, type)

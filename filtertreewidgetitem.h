@@ -44,6 +44,15 @@ public:
     void setIconName(const QString& iconName) {m_IconName = iconName;}
     QString getIconName() {return m_IconName;}
 
+    void setEnableNotify(const QString& enableNotify) {m_EnableNotify = enableNotify;}
+    QString getEnableNotify() {return m_EnableNotify;}
+
+    void setTag(const QString& tag) {m_Tag = tag;}
+    QString getTag() {return m_Tag;}
+
+    void setPoster(const QString& poster) {m_Poster = poster;}
+    QString getPoster() {return m_Poster;}
+
     void setFilters(const QStringList& filters) {m_Filters = filters;}
     QStringList getFilters() {return m_Filters;}
     void appendFilter(const QString& filter) {m_Filters.append(filter);}
@@ -62,6 +71,9 @@ private:
     QString m_Order;
     QString m_ParentID;
     QString m_IconName;
+    QString m_EnableNotify;
+    QString m_Tag;
+    QString m_Poster;
     QStringList m_Filters;
     QStringList m_Contents;
 
