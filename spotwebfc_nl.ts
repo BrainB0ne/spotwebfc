@@ -68,27 +68,42 @@ EEN BEPAALD DOEL.</translation>
         <translation>Filter Eigenschappen</translation>
     </message>
     <message>
-        <location filename="filterpropertiesdialog.ui" line="20"/>
+        <location filename="filterpropertiesdialog.ui" line="23"/>
+        <source>Poster:</source>
+        <translation>Poster:</translation>
+    </message>
+    <message>
+        <location filename="filterpropertiesdialog.ui" line="33"/>
+        <source>Tag:</source>
+        <translation>Tag:</translation>
+    </message>
+    <message>
+        <location filename="filterpropertiesdialog.ui" line="50"/>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
     <message>
-        <location filename="filterpropertiesdialog.ui" line="30"/>
+        <location filename="filterpropertiesdialog.ui" line="64"/>
         <source>Contents:</source>
         <translation>Inhoud:</translation>
     </message>
     <message>
-        <location filename="filterpropertiesdialog.ui" line="60"/>
+        <location filename="filterpropertiesdialog.ui" line="100"/>
+        <source>Enable Notify</source>
+        <translation>Notificatie aanzetten</translation>
+    </message>
+    <message>
+        <location filename="filterpropertiesdialog.ui" line="57"/>
         <source>Icon:</source>
         <translation>Icoon:</translation>
     </message>
     <message>
-        <location filename="filterpropertiesdialog.cpp" line="97"/>
+        <location filename="filterpropertiesdialog.cpp" line="105"/>
         <source>Warning</source>
         <translation>Waarschuwing</translation>
     </message>
     <message>
-        <location filename="filterpropertiesdialog.cpp" line="97"/>
+        <location filename="filterpropertiesdialog.cpp" line="105"/>
         <source>Filter Name can&apos;t be empty!</source>
         <translation>Filter Naam kan niet leeg gelaten worden!</translation>
     </message>
@@ -105,7 +120,7 @@ EEN BEPAALD DOEL.</translation>
     <name>MainWidget</name>
     <message>
         <location filename="mainwidget.ui" line="14"/>
-        <location filename="mainwidget.cpp" line="82"/>
+        <location filename="mainwidget.cpp" line="102"/>
         <source>Spotweb Filter Creator</source>
         <translation>Spotweb Filter Creator</translation>
     </message>
@@ -195,48 +210,48 @@ EEN BEPAALD DOEL.</translation>
         <translation>&amp;Instellingen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="83"/>
+        <location filename="mainwidget.cpp" line="103"/>
         <source>Spotweb Filter Creator is closing, unsaved changes will be lost!
 Do you want to save your changes?</source>
         <translation>Spotweb Filter Creator gaat sluiten, niet bewaarde wijzigingen zullen verloren gaan!
 Wilt u uw wijzigingen opslaan?</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="93"/>
-        <location filename="mainwidget.cpp" line="504"/>
+        <location filename="mainwidget.cpp" line="113"/>
+        <location filename="mainwidget.cpp" line="575"/>
         <source>Save Spotweb Filter File</source>
         <translation>Spotweb Filter bestand  opslaan</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="95"/>
-        <location filename="mainwidget.cpp" line="304"/>
-        <location filename="mainwidget.cpp" line="506"/>
-        <location filename="mainwidget.cpp" line="715"/>
+        <location filename="mainwidget.cpp" line="115"/>
+        <location filename="mainwidget.cpp" line="324"/>
+        <location filename="mainwidget.cpp" line="577"/>
+        <location filename="mainwidget.cpp" line="851"/>
         <source>Spotweb Filter Files (*.xml)</source>
         <translation>Spotweb Filter Bestanden (*.xml)</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="302"/>
+        <location filename="mainwidget.cpp" line="322"/>
         <source>Open Spotweb Filter File</source>
         <translation>Spotweb Filter bestand openen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="713"/>
+        <location filename="mainwidget.cpp" line="849"/>
         <source>Save Spotweb Filter File As</source>
         <translation>Spotweb Filter bestand opslaan als</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="860"/>
+        <location filename="mainwidget.cpp" line="996"/>
         <source>&amp;Add</source>
         <translation>&amp;Toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="864"/>
+        <location filename="mainwidget.cpp" line="1000"/>
         <source>&amp;Remove</source>
         <translation>&amp;Verwijderen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="865"/>
+        <location filename="mainwidget.cpp" line="1001"/>
         <source>&amp;Properties</source>
         <translation>&amp;Eigenschappen</translation>
     </message>
@@ -282,14 +297,12 @@ Wilt u uw wijzigingen opslaan?</translation>
         <translation>Taal</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="48"/>
         <source>Language changed</source>
-        <translation>Taal is veranderd</translation>
+        <translation type="obsolete">Taal is veranderd</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="49"/>
         <source>Please restart Spotweb Filter Creator to activate the new language</source>
-        <translation>Herstart Spotweb Filter Creator om uw gekozen taal te activeren</translation>
+        <translation type="obsolete">Herstart Spotweb Filter Creator om uw gekozen taal te activeren</translation>
     </message>
 </context>
 </TS>
