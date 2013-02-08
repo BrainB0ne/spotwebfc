@@ -58,6 +58,10 @@ QMAKE_POST_LINK += xcopy /Y $${TARGET}.cxml $${OUTPUT_DIR}
 RC_FILE = spotwebfc.rc
 }
 
+unix {
+QMAKE_LFLAGS += -Wl,-rpath,\\$\$ORIGIN/lib/:\\$\$ORIGIN/../lib/
+}
+
 SOURCES += main.cpp\
         mainwidget.cpp \
     aboutdialog.cpp \
