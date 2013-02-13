@@ -49,6 +49,7 @@ public:
     void updateContentsTree(FilterTreeWidgetItem* selectedFilterItem);
     QString findContentByFilter(const QString& filter);
     void createFilterIdentification();
+    int randInt(int low, int high);
     void filtersTreeEmptyCheck();
     int  saveFilterFile(const QString& fileName);
     FilterTreeWidgetItem* findFilterItemByParentID(const QString& parentID);

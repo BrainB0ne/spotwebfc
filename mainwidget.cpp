@@ -610,39 +610,63 @@ void MainWidget::slotSaveButtonClicked()
     }
 }
 
+int MainWidget::randInt(int low, int high)
+{
+    // Random number between low and high
+    return qrand() % ((high + 1) - low) + low;
+}
+
 void MainWidget::createFilterIdentification()
 {
     FilterTreeWidgetItem* item = 0;
     QTreeWidgetItemIterator itItem(ui->filtersTreeWidget, QTreeWidgetItemIterator::All);
 
+    int id = 0;
+    int order = 0;
+
+    FilterTreeWidgetItem* curItem = 0;
+    QString strID;
+    QString strOrder;
+    QList<int> usedIdList;
+
     while (*itItem)
     {
         item = (FilterTreeWidgetItem*)(*itItem);
 
-        int id = 0;
-        FilterTreeWidgetItem* curItem = item;
-        QString strID;
+        id = randInt(1, 999999);
+        while(usedIdList.contains(id))
+        {
+            id = randInt(1, 999999);
+        }
+
+        usedIdList.append(id);
+        strID = QString::number(id);
+
+        order = 0;
+        strOrder = "";
+
+        curItem = item;
 
         while (curItem)
         {
             if(curItem->parent())
             {
-                id = curItem->parent()->indexOfChild(curItem);
+                order = curItem->parent()->indexOfChild(curItem);
             }
             else
             {
-                id = ui->filtersTreeWidget->indexOfTopLevelItem(curItem);
+                order = ui->filtersTreeWidget->indexOfTopLevelItem(curItem);
             }
 
-            strID.prepend(QString::number(id+1));
+            strOrder.prepend(QString::number(order+1));
             curItem = (FilterTreeWidgetItem*)curItem->parent();
         }
 
         // set the ID of the item
         item->setID(strID);
 
-        // set order to the same value as ID
-        item->setOrder(item->getID());
+        // set order of the item
+        item->setOrder(strOrder);
 
         if(item->parent())
         {
