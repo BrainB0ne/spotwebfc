@@ -1,9 +1,15 @@
 #!/bin/bash
 
-if [ -n "$LD_LIBRARY_PATH" ]; then
-    export LD_LIBRARY_PATH="./lib:$LD_LIBRARY_PATH"
+if [ -L $0 ] ; then
+    SWFCDIR=$(dirname $(readlink -f $0)) ;
 else
-    export LD_LIBRARY_PATH="./lib"
+    SWFCDIR=$(dirname $0) ;
 fi
 
-exec "./spotwebfc"
+if [ -n "$LD_LIBRARY_PATH" ]; then
+    export LD_LIBRARY_PATH="$SWFCDIR/lib:$LD_LIBRARY_PATH"
+else
+    export LD_LIBRARY_PATH="$SWFCDIR/lib"
+fi
+
+exec "$SWFCDIR/spotwebfc"
