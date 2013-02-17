@@ -135,6 +135,7 @@ OTHER_FILES += \
     images/help.png \
     images/settings.png \
     spotwebfc_nl.ts \
+    spotwebfc_de.ts \
     gpl-3.0.txt
 
 RESOURCES += \
