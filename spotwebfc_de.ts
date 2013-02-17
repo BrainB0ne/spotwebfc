@@ -19,21 +19,6 @@
         <translation>Spotweb Filter Creator</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="66"/>
-        <source>Version: x.x.x.x</source>
-        <translation>Version: x.x.x.x</translation>
-    </message>
-    <message>
-        <location filename="aboutdialog.ui" line="73"/>
-        <source>Build Date: x-x-x-x</source>
-        <translation>Herstellungsdatum: x-x-x-x</translation>
-    </message>
-    <message>
-        <location filename="aboutdialog.ui" line="80"/>
-        <source>Copyleft 2012</source>
-        <translation>Copyleft 2012</translation>
-    </message>
-    <message>
         <location filename="aboutdialog.ui" line="87"/>
         <source>The program is provided AS IS with NO WARRANTY OF ANY KIND,
 INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND
@@ -48,14 +33,19 @@ EIGNUNG FÜR EINEN BESTIMMTEN ZWECK.</translation>
         <translation>&amp;Lizenz</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="31"/>
-        <source>Build Date: %1 - %2</source>
-        <translation>Herstellungsdatum: %1 - %2</translation>
+        <location filename="aboutdialog.cpp" line="34"/>
+        <source>Copyleft</source>
+        <translation>Copyleft</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="32"/>
-        <source>Version: %1</source>
-        <translation>Version: %1</translation>
+        <location filename="aboutdialog.cpp" line="35"/>
+        <source>Build Date</source>
+        <translation>Herstellungsdatum</translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="36"/>
+        <source>Version</source>
+        <translation>Version</translation>
     </message>
 </context>
 <context>
