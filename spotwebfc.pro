@@ -141,4 +141,6 @@ RESOURCES += \
     spotwebfc.qrc
 
 TRANSLATIONS += \
-    spotwebfc_nl.ts
+    spotwebfc_nl.ts \
+	spotwebfc_de.ts \
+	spotwebfc_xx.ts

@@ -89,6 +89,14 @@ void MainWidget::installTranslation()
                 qApp->installTranslator(m_pTranslator);
             }
         }
+        else if(strLanguage == "Deutsch")
+        {
+            if(m_pTranslator)
+            {
+                m_pTranslator->load("spotwebfc_de");
+                qApp->installTranslator(m_pTranslator);
+            }
+        }
     }
 }
 
