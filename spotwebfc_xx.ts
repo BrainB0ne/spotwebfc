@@ -19,21 +19,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="66"/>
-        <source>Version: x.x.x.x</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="aboutdialog.ui" line="73"/>
-        <source>Build Date: x-x-x-x</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="aboutdialog.ui" line="80"/>
-        <source>Copyleft 2012</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="aboutdialog.ui" line="87"/>
         <source>The program is provided AS IS with NO WARRANTY OF ANY KIND,
 INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND
@@ -46,13 +31,18 @@ FITNESS FOR A PARTICULAR PURPOSE.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="31"/>
-        <source>Build Date: %1 - %2</source>
+        <location filename="aboutdialog.cpp" line="34"/>
+        <source>Copyleft</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="32"/>
-        <source>Version: %1</source>
+        <location filename="aboutdialog.cpp" line="35"/>
+        <source>Build Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.cpp" line="36"/>
+        <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
