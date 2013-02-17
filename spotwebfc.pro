@@ -142,5 +142,5 @@ RESOURCES += \
 
 TRANSLATIONS += \
     spotwebfc_nl.ts \
-	spotwebfc_de.ts \
-	spotwebfc_xx.ts
+    spotwebfc_de.ts \
+    spotwebfc_xx.ts
