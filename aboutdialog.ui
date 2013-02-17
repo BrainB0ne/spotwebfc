@@ -63,21 +63,21 @@
           <item>
            <widget class="QLabel" name="versionLabel">
             <property name="text">
-             <string>Version: x.x.x.x</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="buildDateLabel">
             <property name="text">
-             <string>Build Date: x-x-x-x</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="copyLeftLabel">
             <property name="text">
-             <string>Copyleft 2012</string>
+             <string/>
             </property>
            </widget>
           </item>

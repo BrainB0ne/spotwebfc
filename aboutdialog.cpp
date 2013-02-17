@@ -20,6 +20,9 @@
 
 #include "licensedialog.h"
 
+#define VERSION_NUMBER "0.4.0"
+#define COPYLEFT_YEAR  "2013"
+
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AboutDialog)
@@ -28,8 +31,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     m_pLicenseDlg = 0;
 
-    ui->buildDateLabel->setText(tr("Build Date: %1 - %2").arg(__DATE__).arg(__TIME__));
-    ui->versionLabel->setText(tr("Version: %1").arg("0.3.0"));
+    ui->copyLeftLabel->setText(tr("Copyleft") + QString(" %1").arg(COPYLEFT_YEAR));
+    ui->buildDateLabel->setText(tr("Build Date") + QString(": %1 - %2").arg(__DATE__).arg(__TIME__));
+    ui->versionLabel->setText(tr("Version") + QString(": %1").arg(VERSION_NUMBER));
 
     connect(ui->licenseButton, SIGNAL(clicked()), this, SLOT(slotLicenseButtonClicked()));
 }
