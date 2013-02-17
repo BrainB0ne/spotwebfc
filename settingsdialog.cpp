@@ -42,7 +42,7 @@ SettingsDialog::~SettingsDialog()
 void SettingsDialog::initialize()
 {
     QStringList languages;
-    languages << "English" << "Deutsch" << "Nederlands";
+    languages << "English" << "Deutsch"  << "Français" << "Nederlands";
 
     ui->languageComboBox->insertItems(0, languages);
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findText(m_Language));
@@ -91,6 +91,11 @@ void SettingsDialog::reject()
             translator->load("spotwebfc_de");
             qApp->installTranslator(translator);
         }
+        else if(m_Language == "Français")
+        {
+            translator->load("spotwebfc_fr");
+            qApp->installTranslator(translator);
+        }
         else if(m_Language == "English")
         {
             translator->load("");
@@ -115,6 +120,11 @@ void SettingsDialog::slotLanguageComboBoxActivated(const QString& language)
         else if(language == "Deutsch")
         {
             translator->load("spotwebfc_de");
+            qApp->installTranslator(translator);
+        }
+        else if(language == "Français")
+        {
+            translator->load("spotwebfc_fr");
             qApp->installTranslator(translator);
         }
         else if(language == "English")

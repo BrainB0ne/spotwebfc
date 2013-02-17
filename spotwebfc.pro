@@ -136,6 +136,7 @@ OTHER_FILES += \
     images/settings.png \
     spotwebfc_nl.ts \
     spotwebfc_de.ts \
+    spotwebfc_fr.ts \
     gpl-3.0.txt
 
 RESOURCES += \
@@ -144,4 +145,5 @@ RESOURCES += \
 TRANSLATIONS += \
     spotwebfc_nl.ts \
     spotwebfc_de.ts \
+    spotwebfc_fr.ts \
     spotwebfc_xx.ts
