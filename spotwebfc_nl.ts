@@ -120,7 +120,7 @@ EEN BEPAALD DOEL.</translation>
     <name>MainWidget</name>
     <message>
         <location filename="mainwidget.ui" line="14"/>
-        <location filename="mainwidget.cpp" line="103"/>
+        <location filename="mainwidget.cpp" line="111"/>
         <source>Spotweb Filter Creator</source>
         <translation>Spotweb Filter Creator</translation>
     </message>
@@ -210,110 +210,110 @@ EEN BEPAALD DOEL.</translation>
         <translation>&amp;Instellingen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="104"/>
+        <location filename="mainwidget.cpp" line="112"/>
         <source>Spotweb Filter Creator is closing, unsaved changes will be lost!
 Do you want to save your changes?</source>
         <translation>Spotweb Filter Creator gaat sluiten, niet bewaarde wijzigingen zullen verloren gaan!
 Wilt u uw wijzigingen opslaan?</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="114"/>
-        <location filename="mainwidget.cpp" line="587"/>
+        <location filename="mainwidget.cpp" line="122"/>
+        <location filename="mainwidget.cpp" line="595"/>
         <source>Save Spotweb Filter File</source>
         <translation>Spotweb filterbestand  opslaan</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="116"/>
-        <location filename="mainwidget.cpp" line="325"/>
-        <location filename="mainwidget.cpp" line="589"/>
-        <location filename="mainwidget.cpp" line="887"/>
+        <location filename="mainwidget.cpp" line="124"/>
+        <location filename="mainwidget.cpp" line="333"/>
+        <location filename="mainwidget.cpp" line="597"/>
+        <location filename="mainwidget.cpp" line="895"/>
         <source>Spotweb Filter Files (*.xml)</source>
         <translation>Spotweb filterbestanden (*.xml)</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="123"/>
-        <location filename="mainwidget.cpp" line="145"/>
-        <location filename="mainwidget.cpp" line="596"/>
-        <location filename="mainwidget.cpp" line="612"/>
-        <location filename="mainwidget.cpp" line="894"/>
+        <location filename="mainwidget.cpp" line="131"/>
+        <location filename="mainwidget.cpp" line="153"/>
+        <location filename="mainwidget.cpp" line="604"/>
+        <location filename="mainwidget.cpp" line="620"/>
+        <location filename="mainwidget.cpp" line="902"/>
         <source>Spotweb Filters saved</source>
         <translation>Spotweb filters opgeslagen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="124"/>
-        <location filename="mainwidget.cpp" line="146"/>
-        <location filename="mainwidget.cpp" line="597"/>
-        <location filename="mainwidget.cpp" line="613"/>
-        <location filename="mainwidget.cpp" line="895"/>
+        <location filename="mainwidget.cpp" line="132"/>
+        <location filename="mainwidget.cpp" line="154"/>
+        <location filename="mainwidget.cpp" line="605"/>
+        <location filename="mainwidget.cpp" line="621"/>
+        <location filename="mainwidget.cpp" line="903"/>
         <source>Spotweb Filters saved to:
 %1</source>
         <translation>Spotweb filters opgeslagen in:
 %1</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="130"/>
-        <location filename="mainwidget.cpp" line="152"/>
-        <location filename="mainwidget.cpp" line="602"/>
-        <location filename="mainwidget.cpp" line="618"/>
-        <location filename="mainwidget.cpp" line="900"/>
+        <location filename="mainwidget.cpp" line="138"/>
+        <location filename="mainwidget.cpp" line="160"/>
+        <location filename="mainwidget.cpp" line="610"/>
+        <location filename="mainwidget.cpp" line="626"/>
+        <location filename="mainwidget.cpp" line="908"/>
         <source>Spotweb Filters save failed</source>
         <translation>Spotweb filters opslaan is mislukt</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="131"/>
-        <location filename="mainwidget.cpp" line="153"/>
-        <location filename="mainwidget.cpp" line="603"/>
-        <location filename="mainwidget.cpp" line="619"/>
-        <location filename="mainwidget.cpp" line="901"/>
+        <location filename="mainwidget.cpp" line="139"/>
+        <location filename="mainwidget.cpp" line="161"/>
+        <location filename="mainwidget.cpp" line="611"/>
+        <location filename="mainwidget.cpp" line="627"/>
+        <location filename="mainwidget.cpp" line="909"/>
         <source>Spotweb Filters could not be saved to:
 %1</source>
         <translation>Spotweb filters konden niet opgeslagen worden in:
 %1</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="230"/>
-        <location filename="mainwidget.cpp" line="342"/>
+        <location filename="mainwidget.cpp" line="238"/>
+        <location filename="mainwidget.cpp" line="350"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="231"/>
+        <location filename="mainwidget.cpp" line="239"/>
         <source>Contents file: %1 could not be opened</source>
         <translation>Inhoudsbestand: %1 kan niet worden geopend</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="238"/>
-        <location filename="mainwidget.cpp" line="353"/>
+        <location filename="mainwidget.cpp" line="246"/>
+        <location filename="mainwidget.cpp" line="361"/>
         <source>Internal Error</source>
         <translation>Interne fout</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="239"/>
+        <location filename="mainwidget.cpp" line="247"/>
         <source>Contents data could not be read correctly</source>
         <translation>Inhoudsdata kon niet correct worden gelezen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="323"/>
+        <location filename="mainwidget.cpp" line="331"/>
         <source>Open Spotweb Filter File</source>
         <translation>Spotweb filterbestand openen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="343"/>
+        <location filename="mainwidget.cpp" line="351"/>
         <source>Spotweb Filter file: %1 could not be opened</source>
         <translation>Spotweb filterbestand: %1 kon niet worden geopend</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="354"/>
+        <location filename="mainwidget.cpp" line="362"/>
         <source>Spotweb Filter data could not be read correctly</source>
         <translation>Spotweb filterdata kon niet correct worden gelezen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="386"/>
+        <location filename="mainwidget.cpp" line="394"/>
         <source>Warning</source>
         <translation>Waarschuwing</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="387"/>
+        <location filename="mainwidget.cpp" line="395"/>
         <source>File: &apos;%1&apos;
 is created/generated with: &apos;%2&apos;.
 
@@ -324,27 +324,27 @@ is gemaakt/gegenereerd met: &apos;%2&apos;
 Verifieer dat alle filters correct worden geladen!</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="388"/>
+        <location filename="mainwidget.cpp" line="396"/>
         <source>unknown generator</source>
         <translation>onbekende generator</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="885"/>
+        <location filename="mainwidget.cpp" line="893"/>
         <source>Save Spotweb Filter File As</source>
         <translation>Spotweb filterbestand opslaan als</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="1032"/>
+        <location filename="mainwidget.cpp" line="1040"/>
         <source>&amp;Add</source>
         <translation>&amp;Toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="1036"/>
+        <location filename="mainwidget.cpp" line="1044"/>
         <source>&amp;Remove</source>
         <translation>&amp;Verwijderen</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="1037"/>
+        <location filename="mainwidget.cpp" line="1045"/>
         <source>&amp;Properties</source>
         <translation>&amp;Eigenschappen</translation>
     </message>
