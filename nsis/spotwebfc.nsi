@@ -18,7 +18,7 @@
 
 # These three must be integers
 !define VERSIONMAJOR 0
-!define VERSIONMINOR 3
+!define VERSIONMINOR 4
 !define VERSIONBUILD 0
 
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
@@ -74,6 +74,7 @@ section "install"
     file "QtGui4.dll"
     file "QtXml4.dll"
     file "spotwebfc_nl.qm"
+    file "spotwebfc_de.qm"
     file "logo.ico"
 	
     # Add any other files for the install directory (license files, app data, etc) here
@@ -131,6 +132,7 @@ section "uninstall"
     delete $INSTDIR\QtGui4.dll
     delete $INSTDIR\QtXml4.dll
     delete $INSTDIR\spotwebfc_nl.qm
+    delete $INSTDIR\spotwebfc_de.qm
     delete $INSTDIR\logo.ico
  
 	# Always delete uninstaller as the last action
