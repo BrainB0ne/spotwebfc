@@ -36,6 +36,7 @@ public:
 
     void initialize();
     void retranslate();
+    void fillLanguages();
 
     void setLanguage(const QString& language) {m_Language = language;}
     QString getLanguage() {return m_Language;}

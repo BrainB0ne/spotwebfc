@@ -21,6 +21,8 @@
 #include "mainwidget.h"
 
 #include <QMessageBox>
+#include <QtXml/QDomDocument>
+#include <QFile>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -39,13 +41,51 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-void SettingsDialog::initialize()
+void SettingsDialog::fillLanguages()
 {
+    QString filePath = qApp->applicationDirPath() + "/" + QString(LANGUAGES_FILE);
+
+    QDomDocument doc("spotwebfc_languages");
+    QFile file(filePath);
+
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        return;
+    }
+
+    if (!doc.setContent(&file))
+    {
+        file.close();
+        return;
+    }
+
+    file.close();
+
+    QDomElement docElem = doc.documentElement();
+
+    QString languageName;
     QStringList languages;
-    languages << "English" << "Deutsch"  << "Français" << "Nederlands";
+
+    QDomNode n = docElem.firstChild();
+    while(!n.isNull())
+    {
+        QDomElement e = n.toElement();
+        if(!e.isNull())
+        {
+            languageName = e.attribute("name");
+            languages << languageName;
+        }
+
+        n = n.nextSibling();
+    }
 
     ui->languageComboBox->insertItems(0, languages);
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findText(m_Language));
+}
+
+void SettingsDialog::initialize()
+{
+    fillLanguages();
 }
 
 void SettingsDialog::changeEvent(QEvent* event)

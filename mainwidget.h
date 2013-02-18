@@ -26,6 +26,8 @@
 #define CONTENTS_COLUMN_TYPE   0
 #define CONTENTS_COLUMN_FILTER 1
 
+#define LANGUAGES_FILE "spotwebfc.lng"
+
 class FilterTreeWidgetItem;
 
 namespace Ui {
