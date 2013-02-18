@@ -54,7 +54,7 @@ debug {
 }
 
 win32 {
-QMAKE_POST_LINK += xcopy /Y $${TARGET}.cxml $${OUTPUT_DIR}
+QMAKE_POST_LINK += xcopy /Y $${TARGET}.cxml $${OUTPUT_DIR} && xcopy /Y $${TARGET}.lng $${OUTPUT_DIR}
 RC_FILE = spotwebfc.rc
 }
 
@@ -137,6 +137,7 @@ OTHER_FILES += \
     spotwebfc_nl.ts \
     spotwebfc_de.ts \
     spotwebfc_fr.ts \
+    spotwebfc.lng \
     gpl-3.0.txt
 
 RESOURCES += \
