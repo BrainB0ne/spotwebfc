@@ -70,6 +70,7 @@ section "install"
     # Files added here should be removed by the uninstaller (see section "uninstall")
 	file "spotwebfc.exe"
     file "spotwebfc.cxml"
+    file "spotwebfc.lng"
     file "QtCore4.dll"
     file "QtGui4.dll"
     file "QtXml4.dll"
@@ -129,6 +130,7 @@ section "uninstall"
 	# Remove files
 	delete $INSTDIR\spotwebfc.exe
     delete $INSTDIR\spotwebfc.cxml
+    delete $INSTDIR\spotwebfc.lng
     delete $INSTDIR\QtCore4.dll
     delete $INSTDIR\QtGui4.dll
     delete $INSTDIR\QtXml4.dll
