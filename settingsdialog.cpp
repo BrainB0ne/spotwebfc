@@ -24,6 +24,12 @@
 #include <QtXml/QDomDocument>
 #include <QFile>
 
+LanguageItem::LanguageItem(const QString& name, const QString& locale)
+{
+    m_Name = name;
+    m_Locale = locale;
+}
+
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog)
@@ -64,6 +70,7 @@ void SettingsDialog::fillLanguages()
     QDomElement docElem = doc.documentElement();
 
     QString languageName;
+    QString languageLocale;
     QStringList languages;
 
     QDomNode n = docElem.firstChild();
@@ -73,7 +80,11 @@ void SettingsDialog::fillLanguages()
         if(!e.isNull())
         {
             languageName = e.attribute("name");
+            languageLocale = e.attribute("locale");
+
             languages << languageName;
+
+            m_LanguageItems.append(LanguageItem(languageName, languageLocale));
         }
 
         n = n.nextSibling();
@@ -117,29 +128,24 @@ void SettingsDialog::accept()
 
 void SettingsDialog::reject()
 {
-    QTranslator* translator = m_pMainWidget->getTranslator();
-
-    if(m_pMainWidget && translator)
+    if(m_pMainWidget)
     {
-        if(m_Language == "Nederlands")
+        QTranslator* translator = m_pMainWidget->getTranslator();
+
+        if(translator)
         {
-            translator->load("spotwebfc_nl");
-            qApp->installTranslator(translator);
-        }
-        else if(m_Language == "Deutsch")
-        {
-            translator->load("spotwebfc_de");
-            qApp->installTranslator(translator);
-        }
-        else if(m_Language == "Français")
-        {
-            translator->load("spotwebfc_fr");
-            qApp->installTranslator(translator);
-        }
-        else if(m_Language == "English")
-        {
-            translator->load("");
-            qApp->installTranslator(translator);
+            QString locale = findLocaleByLanguageName(m_Language);
+
+            if(!locale.isEmpty())
+            {
+                translator->load(QString("spotwebfc_%1").arg(locale));
+                qApp->installTranslator(translator);
+            }
+            else
+            {
+                translator->load("");
+                qApp->installTranslator(translator);
+            }
         }
     }
 
@@ -148,29 +154,60 @@ void SettingsDialog::reject()
 
 void SettingsDialog::slotLanguageComboBoxActivated(const QString& language)
 {
-    QTranslator* translator = m_pMainWidget->getTranslator();
-
-    if(m_pMainWidget && translator)
+    if(m_pMainWidget)
     {
-        if(language == "Nederlands")
+        QTranslator* translator = m_pMainWidget->getTranslator();
+
+        if(translator)
         {
-            translator->load("spotwebfc_nl");
-            qApp->installTranslator(translator);
-        }
-        else if(language == "Deutsch")
-        {
-            translator->load("spotwebfc_de");
-            qApp->installTranslator(translator);
-        }
-        else if(language == "Français")
-        {
-            translator->load("spotwebfc_fr");
-            qApp->installTranslator(translator);
-        }
-        else if(language == "English")
-        {
-            translator->load("");
-            qApp->installTranslator(translator);
+            QString locale = findLocaleByLanguageName(language);
+
+            if(!locale.isEmpty())
+            {
+                translator->load(QString("spotwebfc_%1").arg(locale));
+                qApp->installTranslator(translator);
+            }
+            else
+            {
+                translator->load("");
+                qApp->installTranslator(translator);
+            }
         }
     }
+}
+
+QString SettingsDialog::findLocaleByLanguageName(const QString& languageName)
+{
+    QList<LanguageItem>::iterator it = m_LanguageItems.begin(),
+                                  itEnd = m_LanguageItems.end();
+
+    while (it != itEnd)
+    {
+        if( (*it).getName() == languageName )
+        {
+            return (*it).getLocale();
+        }
+
+        ++it;
+    }
+
+    return "";
+}
+
+QString SettingsDialog::findLanguageNameByLocale(const QString& locale)
+{
+    QList<LanguageItem>::iterator it = m_LanguageItems.begin(),
+                                  itEnd = m_LanguageItems.end();
+
+    while (it != itEnd)
+    {
+        if( (*it).getLocale() == locale )
+        {
+            return (*it).getName();
+        }
+
+        ++it;
+    }
+
+    return "";
 }

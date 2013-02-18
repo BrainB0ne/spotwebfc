@@ -26,6 +26,23 @@ namespace Ui {
 class SettingsDialog;
 }
 
+class LanguageItem
+{
+public:
+    LanguageItem(const QString& name, const QString& locale);
+    ~LanguageItem() {;}
+
+    void setName(const QString& name) {m_Name = name;}
+    void setLocale(const QString& locale) {m_Locale = locale;}
+
+    QString getName() {return m_Name;}
+    QString getLocale() {return m_Locale;}
+
+private:
+    QString m_Name;
+    QString m_Locale;
+};
+
 class SettingsDialog : public QDialog
 {
     Q_OBJECT
@@ -40,7 +57,13 @@ public:
 
     void setLanguage(const QString& language) {m_Language = language;}
     QString getLanguage() {return m_Language;}
-    
+
+    void setLocale(const QString& locale) {m_Locale = locale;}
+    QString getLocale() {return m_Locale;}
+
+    QString findLocaleByLanguageName(const QString& languageName);
+    QString findLanguageNameByLocale(const QString& locale);
+
 protected:
     void changeEvent(QEvent* event);
 
@@ -52,7 +75,9 @@ private slots:
 private:
     Ui::SettingsDialog *ui;
 
+    QList<LanguageItem> m_LanguageItems;
     QString m_Language;
+    QString m_Locale;
     MainWidget* m_pMainWidget;
 };
 

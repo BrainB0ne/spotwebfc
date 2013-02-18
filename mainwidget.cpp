@@ -81,29 +81,21 @@ void MainWidget::installTranslation()
         QString strLanguage = m_pSettings->value("Settings/Language", QString("English")).toString();
         m_pTranslator = new QTranslator();
 
-        if(strLanguage == "Nederlands")
+        SettingsDialog* settingsDlg = new SettingsDialog(this);
+
+        if(settingsDlg)
         {
-            if(m_pTranslator)
+            settingsDlg->initialize();
+
+            QString locale = settingsDlg->findLocaleByLanguageName(strLanguage);
+
+            if(!locale.isEmpty())
             {
-                m_pTranslator->load("spotwebfc_nl");
+                m_pTranslator->load(QString("spotwebfc_%1").arg(locale));
                 qApp->installTranslator(m_pTranslator);
             }
-        }
-        else if(strLanguage == "Deutsch")
-        {
-            if(m_pTranslator)
-            {
-                m_pTranslator->load("spotwebfc_de");
-                qApp->installTranslator(m_pTranslator);
-            }
-        }
-        else if(strLanguage == "Français")
-        {
-            if(m_pTranslator)
-            {
-                m_pTranslator->load("spotwebfc_fr");
-                qApp->installTranslator(m_pTranslator);
-            }
+
+            delete settingsDlg;
         }
     }
 }
@@ -936,6 +928,8 @@ void MainWidget::slotSettingsButtonClicked()
             QString language = settingsDlg->getLanguage();
             m_pSettings->setValue("Settings/Language", language);
         }
+
+        delete settingsDlg;
     }
 }
 
