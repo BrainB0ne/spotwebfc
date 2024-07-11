@@ -18,7 +18,7 @@
 
 # These three must be integers
 !define VERSIONMAJOR 0
-!define VERSIONMINOR 4
+!define VERSIONMINOR 5
 !define VERSIONBUILD 0
 
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
