@@ -28,6 +28,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QMenu>
+#include <QRandomGenerator>
 #include <QtGui/QCloseEvent>
 #include <QtXml/QDomDocument>
 
@@ -630,10 +631,11 @@ void MainWidget::slotSaveButtonClicked()
     }
 }
 
-int MainWidget::randInt(int low, int high)
+quint32 MainWidget::randUInt(quint32 low, quint32 high)
 {
     // Random number between low and high
-    return qrand() % ((high + 1) - low) + low;
+    quint32 x = QRandomGenerator::global()->bounded(low, high);
+    return x;
 }
 
 void MainWidget::createFilterIdentification()
@@ -641,7 +643,7 @@ void MainWidget::createFilterIdentification()
     FilterTreeWidgetItem* item = 0;
     QTreeWidgetItemIterator itItem(ui->filtersTreeWidget, QTreeWidgetItemIterator::All);
 
-    int id = 0;
+    quint32 id = 0;
     int order = 0;
 
     FilterTreeWidgetItem* curItem = 0;
@@ -653,10 +655,10 @@ void MainWidget::createFilterIdentification()
     {
         item = (FilterTreeWidgetItem*)(*itItem);
 
-        id = randInt(1, 999999);
+        id = randUInt(1, 999999);
         while(usedIdList.contains(id))
         {
-            id = randInt(1, 999999);
+            id = randUInt(1, 999999);
         }
 
         usedIdList.append(id);
