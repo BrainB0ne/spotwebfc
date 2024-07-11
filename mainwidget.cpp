@@ -649,7 +649,7 @@ void MainWidget::createFilterIdentification()
     FilterTreeWidgetItem* curItem = 0;
     QString strID;
     QString strOrder;
-    QList<int> usedIdList;
+    QList<quint32> usedIdList;
 
     while (*itItem)
     {
