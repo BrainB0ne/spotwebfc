@@ -20,8 +20,8 @@
 
 #include "licensedialog.h"
 
-#define VERSION_NUMBER "0.4.0"
-#define COPYLEFT_YEAR  "2013"
+#define VERSION_NUMBER "0.5.0"
+#define COPYLEFT_YEAR  "2024"
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
