@@ -92,7 +92,7 @@ void MainWidget::installTranslation()
 
             if(!locale.isEmpty())
             {
-                m_pTranslator->load(QString("spotwebfc_%1").arg(locale));
+                m_pTranslator->load(QString("%1/spotwebfc_%2").arg(qApp->applicationDirPath()).arg(locale));
                 qApp->installTranslator(m_pTranslator);
             }
 

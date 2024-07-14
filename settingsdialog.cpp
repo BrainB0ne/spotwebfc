@@ -138,7 +138,7 @@ void SettingsDialog::reject()
 
             if(!locale.isEmpty())
             {
-                translator->load(QString("spotwebfc_%1").arg(locale));
+                translator->load(QString("%1/spotwebfc_%2").arg(qApp->applicationDirPath()).arg(locale));
                 qApp->installTranslator(translator);
             }
             else
@@ -164,7 +164,7 @@ void SettingsDialog::slotLanguageComboBoxActivated(const QString& language)
 
             if(!locale.isEmpty())
             {
-                translator->load(QString("spotwebfc_%1").arg(locale));
+                translator->load(QString("%1/spotwebfc_%2").arg(qApp->applicationDirPath()).arg(locale));
                 qApp->installTranslator(translator);
             }
             else
