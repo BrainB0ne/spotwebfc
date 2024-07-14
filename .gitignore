@@ -1,5 +1,13 @@
+# Custom Files / Folders
 /debug
 /release
+/zip
+/installer/Output
+/installer/spotwebfc.cxml
+/installer/spotwebfc.lng
+
+*.zip
+*.exe
 
 # C++ objects and libs
 *.slo
