@@ -38,9 +38,34 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "logo.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "QtCore4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "QtGui4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "QtXml4.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Qt5Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Qt5Xml.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "libGLESv2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "opengl32sw.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "iconengines\qsvgicon.dll"; DestDir: "{app}\iconengines"; Flags: ignoreversion
+
+Source: "imageformats\qgif.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qicns.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qico.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qjpeg.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qsvg.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qtga.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qtiff.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qwbmp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "imageformats\qwebp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+
+Source: "platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion
+
+Source: "styles\qwindowsvistastyle.dll"; DestDir: "{app}\styles"; Flags: ignoreversion
+
 Source: "spotwebfc.cxml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "spotwebfc.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "spotwebfc.lng"; DestDir: "{app}"; Flags: ignoreversion
