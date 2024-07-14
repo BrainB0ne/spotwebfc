@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Spotweb Filter Creator
+Comment=GUI application for creating Spotweb Filter files
+Exec=spotwebfc
+Icon=spotwebfc
+Categories=Accessories;
