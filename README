@@ -1,7 +1,7 @@
 ************************* Spotweb Filter Creator *************************
 
 This project is a GUI application for creating Spotweb Filter files (.xml)
-This project is developed with Qt 4.8.3
+This project is developed with Qt 5.15.2
 
 The spotwebfc.cxml file must be placed in the same directory as
 the executable when running the application.
@@ -9,7 +9,7 @@ the executable when running the application.
 **************************************************************************
 
 Spotweb Filter Creator
-Copyleft 2013
+Copyleft 2024
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
