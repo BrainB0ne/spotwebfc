@@ -25,15 +25,27 @@
                 <subfilter name="WMV" filter="cat0_z0_a1" />
                 <subfilter name="MPG" filter="cat0_z0_a2" />
                 <subfilter name="DVD5" filter="cat0_z0_a3" />
+                <subfilter name="HD Other" filter="cat0_z0_a4" />
                 <subfilter name="Blu-ray" filter="cat0_z0_a6" />
+                <subfilter name="HD-DVD" filter="cat0_z0_a7" />
+                <subfilter name="WMVHD" filter="cat0_z0_a8" />
                 <subfilter name="x264" filter="cat0_z0_a9" />
                 <subfilter name="DVD9" filter="cat0_z0_a10" />
+                <subfilter name="3D" filter="cat0_z0_a14" />
             </subcat>
             <subcat name="Source">
                 <subfilter name="CAM" filter="cat0_z0_b0" />
+                <subfilter name="(S)VCD" filter="cat0_z0_b1" />
+                <subfilter name="Promo" filter="cat0_z0_b2" />
                 <subfilter name="Retail" filter="cat0_z0_b3" />
+                <subfilter name="TV" filter="cat0_z0_b4" />
+                <subfilter name="Satellite" filter="cat0_z0_b6" />
                 <subfilter name="R5" filter="cat0_z0_b7" />
+                <subfilter name="Telecine" filter="cat0_z0_b8" />
                 <subfilter name="Telesync" filter="cat0_z0_b9" />
+                <subfilter name="WEB-DL" filter="cat0_z0_b11" />
+                <subfilter name="WEBRip" filter="cat0_z0_b12" />
+                <subfilter name="HDRip" filter="cat0_zo_b13" />
             </subcat>
             <subcat name="Language">
                 <subfilter name="No subtitles" filter="cat0_z0_c0" />
@@ -48,6 +60,7 @@
                 <subfilter name="German audio/written" filter="cat0_z0_c12" />
                 <subfilter name="French audio/written" filter="cat0_z0_c13" />
                 <subfilter name="Spanish audio/written" filter="cat0_z0_c14" />
+                <subfilter name="Asian audio/written" filter="cat0_z0_c15" />
             </subcat>
             <subcat name="Genre">
                 <subfilter name="Action" filter="cat0_z0_d0" />
@@ -88,15 +101,27 @@
                 <subfilter name="WMV" filter="cat0_z1_a1" />
                 <subfilter name="MPG" filter="cat0_z1_a2" />
                 <subfilter name="DVD5" filter="cat0_z1_a3" />
+                <subfilter name="HD Other" filter="cat0_z1_a4" />
                 <subfilter name="Blu-ray" filter="cat0_z1_a6" />
+                <subfilter name="HD-DVD" filter="cat0_z1_a7" />
+                <subfilter name="WMVHD" filter="cat0_z1_a8" />
                 <subfilter name="x264" filter="cat0_z1_a9" />
                 <subfilter name="DVD9" filter="cat0_z1_a10" />
+                <subfilter name="3D" filter="cat0_z1_a14" />
             </subcat>
             <subcat name="Source">
                 <subfilter name="CAM" filter="cat0_z1_b0" />
+                <subfilter name="(S)VCD" filter="cat0_z1_b1" />
+                <subfilter name="Promo" filter="cat0_z1_b2" />
                 <subfilter name="Retail" filter="cat0_z1_b3" />
+                <subfilter name="TV" filter="cat0_z1_b4" />
+                <subfilter name="Satellite" filter="cat0_z1_b6" />
                 <subfilter name="R5" filter="cat0_z1_b7" />
+                <subfilter name="Telecine" filter="cat0_z1_b8" />
                 <subfilter name="Telesync" filter="cat0_z1_b9" />
+                <subfilter name="WEB-DL" filter="cat0_z1_b11" />
+                <subfilter name="WEBRip" filter="cat0_z1_b12" />
+                <subfilter name="HDRip" filter="cat0_z1_b13" />
             </subcat>
             <subcat name="Language">
                 <subfilter name="No subtitles" filter="cat0_z1_c0" />
@@ -111,6 +136,7 @@
                 <subfilter name="German audio/written" filter="cat0_z1_c12" />
                 <subfilter name="French audio/written" filter="cat0_z1_c13" />
                 <subfilter name="Spanish audio/written" filter="cat0_z1_c14" />
+                <subfilter name="Asian audio/written" filter="cat0_z1_c15" />
             </subcat>
             <subcat name="Genre">
                 <subfilter name="Action" filter="cat0_z1_d0" />
@@ -148,9 +174,11 @@
         <type name="Book" filter="cat0_z2">
             <subcat name="Format">
                 <subfilter name="ePub" filter="cat0_z2_a5" />
+                <subfilter name="PDF" filter="cat0_z2_a11" />
             </subcat>
             <subcat name="Source">
                 <subfilter name="Scan" filter="cat0_z2_b10" />
+                <subfilter name="Retail" filter="cat0_z2_b3" />
             </subcat>
             <subcat name="Language">
                 <subfilter name="English audio/written" filter="cat0_z2_c10" />
@@ -158,6 +186,7 @@
                 <subfilter name="German audio/written" filter="cat0_z2_c12" />
                 <subfilter name="French audio/written" filter="cat0_z2_c13" />
                 <subfilter name="Spanish audio/written" filter="cat0_z2_c14" />
+                <subfilter name="Asian audio/written" filter="cat0_z2_c15" />
             </subcat>
             <subcat name="Genre">
                 <subfilter name="Adventure" filter="cat0_z2_d1" />
@@ -207,15 +236,27 @@
                 <subfilter name="WMV" filter="cat0_z3_a1" />
                 <subfilter name="MPG" filter="cat0_z3_a2" />
                 <subfilter name="DVD5" filter="cat0_z3_a3" />
+                <subfilter name="HD Other" filter="cat0_z3_a4" />
                 <subfilter name="Blu-ray" filter="cat0_z3_a6" />
+                <subfilter name="HD-DVD" filter="cat0_z3_a7" />
+                <subfilter name="WMVHD" filter="cat0_z3_a8" />
                 <subfilter name="x264" filter="cat0_z3_a9" />
                 <subfilter name="DVD9" filter="cat0_z3_a10" />
+                <subfilter name="3D" filter="cat0_z3_a14" />
             </subcat>
             <subcat name="Source">
                 <subfilter name="CAM" filter="cat0_z3_b0" />
+                <subfilter name="(S)VCD" filter="cat0_z3_b1" />
+                <subfilter name="Promo" filter="cat0_z3_b2" />
                 <subfilter name="Retail" filter="cat0_z3_b3" />
+                <subfilter name="TV" filter="cat0_z3_b4" />
+                <subfilter name="Satellite" filter="cat0_z3_b6" />
                 <subfilter name="R5" filter="cat0_z3_b7" />
+                <subfilter name="Telecine" filter="cat0_z3_b8" />
                 <subfilter name="Telesync" filter="cat0_z3_b9" />
+                <subfilter name="WEB-DL" filter="cat0_z3_b11" />
+                <subfilter name="WEBRip" filter="cat0_z3_b12" />
+                <subfilter name="HDRip" filter="cat0_z3_b13" />
             </subcat>
             <subcat name="Language">
                 <subfilter name="No subtitles" filter="cat0_z3_c0" />
@@ -230,6 +271,7 @@
                 <subfilter name="German audio/written" filter="cat0_z3_c12" />
                 <subfilter name="French audio/written" filter="cat0_z3_c13" />
                 <subfilter name="Spanish audio/written" filter="cat0_z3_c14" />
+                <subfilter name="Asian audio/written" filter="cat0_z3_c15" />
             </subcat>
             <subcat name="Genre">
                 <subfilter name="Bi" filter="cat0_z3_d72" />
@@ -539,6 +581,8 @@
                 <subfilter name="iOS" filter="cat2_zz_a14" />
                 <subfilter name="Android" filter="cat2_zz_a15" />
                 <subfilter name="Nintendo 3DS" filter="cat2_zz_a16" />
+                <subfilter name="Playstation 4" filter="cat2_zz_a17" />
+                <subfilter name="XBox One" filter="cat2_zz_a18" />
             </subcat>
             <subcat name="Format">
                 <subfilter name="Rip" filter="cat2_zz_b1" />
