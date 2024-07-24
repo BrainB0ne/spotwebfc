@@ -21,8 +21,8 @@
 IDI_ICON1   ICON    DISCARDABLE     "images/spotwebfc.ico"
 
 VS_VERSION_INFO     VERSIONINFO
-FILEVERSION         0, 4, 0, 0
-PRODUCTVERSION      0, 4, 0, 0
+FILEVERSION         0, 6, 0, 0
+PRODUCTVERSION      0, 6, 0, 0
 FILEFLAGSMASK       0x3fL
 FILEFLAGS           0
 FILEOS              VOS_NT_WINDOWS32
@@ -39,12 +39,12 @@ BEGIN
         BEGIN
             VALUE   "CompanyName",      "Copyleft\0"
             VALUE   "FileDescription",  "Application for creating Spotweb filters\0"
-            VALUE   "FileVersion",      "0.4.0.0\0"
+            VALUE   "FileVersion",      "0.6.0.0\0"
             VALUE   "InternalName",     "spotwebfc\0"
-            VALUE   "LegalCopyright",   "Copyleft 2012\0"
+            VALUE   "LegalCopyright",   "Copyleft 2024\0"
             VALUE   "OriginalFilename", "spotwebfc.exe\0"
             VALUE   "ProductName",      "Spotweb Filter Creator\0"
-            VALUE   "ProductVersion",   "0.4.0.0\0"
+            VALUE   "ProductVersion",   "0.6.0.0\0"
         END
     END
 END
