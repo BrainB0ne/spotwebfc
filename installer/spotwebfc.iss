@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Spotweb Filter Creator"
-#define MyAppVersion "0.6.0"
+#define MyAppVersion "0.6.1"
 #define MyAppPublisher "SpotwebFC"
 #define MyAppURL "https://www.brainbytez.nl/spotweb-filter-creator/"
 #define MyAppExeName "spotwebfc.exe"
