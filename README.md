@@ -1,4 +1,16 @@
-************************* Spotweb Filter Creator *************************
+## Spotweb Filter Creator
+
+**Build Status:**
+
+[![CMake on Windows-Latest](https://github.com/BrainB0ne/spotwebfc/actions/workflows/cmake-windows-latest.yml/badge.svg)](https://github.com/BrainB0ne/spotwebfc/actions/workflows/cmake-windows-latest.yml)
+[![CMake on Ubuntu-Latest](https://github.com/BrainB0ne/spotwebfc/actions/workflows/cmake-ubuntu-latest.yml/badge.svg)](https://github.com/BrainB0ne/spotwebfc/actions/workflows/cmake-ubuntu-latest.yml)
+
+**Build Requirements:**
+
+[Windows]
+
+- Microsoft Visual Studio 2019
+- Qt SDK 5.15.2 / Qt Creator 18
 
 This project is a GUI application for creating Spotweb Filter files (.xml)
 This project is developed with Qt 5.15.2
@@ -6,8 +18,7 @@ This project is developed with Qt 5.15.2
 The spotwebfc.cxml file must be placed in the same directory as
 the executable when running the application.
 
-**************************************************************************
-
+```
 Spotweb Filter Creator
 Copyleft 2024
 
@@ -21,4 +32,5 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+```
