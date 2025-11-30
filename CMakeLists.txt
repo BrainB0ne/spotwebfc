@@ -27,7 +27,8 @@ set(PROJECT_SOURCES
     newfilterdialog.cpp newfilterdialog.h newfilterdialog.ui
     filterpropertiesdialog.cpp filterpropertiesdialog.h filterpropertiesdialog.ui
     settingsdialog.cpp settingsdialog.h settingsdialog.ui
-    licensedialog.cpp licensedialog.h licensedialog.ui  
+    licensedialog.cpp licensedialog.h licensedialog.ui
+    spotwebfc.rc
 )
 
 set(RESOURCE
